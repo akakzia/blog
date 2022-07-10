@@ -9,10 +9,10 @@
 lang: en-US
 
 # Site title
-title: "Scriptor"
+title: "Ahmed Akakzia"
 
 # A description of your site for meta tag, search engine results.
-description: "Scriptor is a minimal, clean, modern & responsive Jekyll theme for writers"
+description: "Welcome to my professional and personal website."
 
 # The subpath of your site, e.g. /blog, for generating urls.
 baseurl: ""
@@ -21,7 +21,7 @@ baseurl: ""
 url: "https://scriptor-jekyll.netlify.com"
 
 # Favicon
-favicon: images/favicon.png
+favicon: images/tabicon.png
 
 # Google Analytics id, e.g. "UA-NNNNNNNN-N"
 google_analytics: ""
@@ -43,7 +43,7 @@ navigation:
 disqus: justgoodthemes
 
 # Colors
-accent_color: '#2d72d9'
+accent_color: '#e3a1a1'
 
 # Site footer
 footer:
