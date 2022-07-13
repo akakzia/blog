@@ -5,6 +5,8 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'jekyll serve'. If you change this file, please restart the server process.
 
+plugins: jekyll-scholar
+
 # Site language
 lang: en-US
 
@@ -32,12 +34,14 @@ navigation:
     url: /
   - text: About
     url: /about/
+  - text: Publications
+    url: /publications/
+  - text: Science Lab
+    url: /scientific/
   - text: Style Guide
     url: /style-guide/
-  - text: Tags
-    url: /tags/
-  - text: Download
-    url: https://github.com/JustGoodThemes/Scriptor-Jekyll-Theme
+  - text: Contact
+    url: /contact/
 
 # The shortname for your Disqus site to enable comments.
 disqus: justgoodthemes
@@ -47,7 +51,7 @@ accent_color: '#e3a1a1'
 
 # Site footer
 footer:
-  content: "&copy; Scriptor all rights reserved. Theme by [JustGoodThemes](https://www.justgoodthemes.com)."
+  content: "&copy; 2022 Ahmed Akakzia. Theme customized from [JustGoodThemes](https://www.justgoodthemes.com)."
   has_social: true
 
 # Plugins
@@ -69,3 +73,7 @@ markdown: kramdown
 sass:
   sass_dir: _sass
   style: compressed
+
+# Scholar 
+scholar:
+    style: physical-review-d
