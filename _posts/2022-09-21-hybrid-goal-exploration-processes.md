@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "Hybrid Goal Exploration Processes"
-description: "."
+description: "A framework for learning goals from two different generation sources."
+feature_image: images/hgeps.png
 date: 2022-09-21
 ---
 

@@ -2,6 +2,7 @@
 layout: post
 title: "From CDN to P2P: a Brief Dataset Analysis for Video Streaming"
 description: "A brief study of two different video streaming techniques."
+feature_image: images/video_streaming.png
 date: 2019-03-10
 ---
 

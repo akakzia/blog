@@ -2,6 +2,7 @@
 layout: post
 title: "The Mandlerian Theory on Prelinguistic Concept Formation"
 description: "A brief investigation of the theory of Jean Mandler on prelinguistinc concept formation"
+feature_image: images/pma.png
 date: 2022-08-19
 ---
 > Toddlers are the best learners we know to exist. From a very young age, they exhibit impressive behaviors when interacting with their surroundings. Interestingly, these capacities are not only dependent on caregivers, but can also come from autonomous interactions with objects. So how can an infant learn concepts on her own based only on sensorimotor interactions with the physical world ? On this matter, research has been mainly divided in two conceptually and factually different perspectives: the _empiricist_ view, suggesting that knowledge comes primarily from sensory experience, and the _nativist_ view, stating that certain skills and abilities are hard-wired into the brain at birth. 

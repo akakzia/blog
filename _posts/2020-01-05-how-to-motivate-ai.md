@@ -2,6 +2,7 @@
 layout: post
 title: "How to Motivate Embodied Machines?"
 description: "A vulgarization of implementing intrinsic motivations in embodied artificial agents."
+feature_image: images/motivation.png
 date: 2020-11-20
 ---
 
