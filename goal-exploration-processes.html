@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goal Exploration Processes</title>
+  <meta name="description" content="A framework for learning multiple.">
+  <link rel="canonical" href="http://localhost:4000/goal-exploration-processes">
+  <link rel="alternate" type="application/rss+xml" title="Ahmed Akakzia Feed"
+    href="http://localhost:4000/feed.xml">
+  
+  <link rel="shortcut icon" href="/images/tabicon.png" type="image/png" />
+  
+  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i%7CNoto+Serif:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <div id="page" class="site">
+    <div class="inner">
+      <header class="site-header">
+  
+  <p class="site-title"><a class="logo-text" href="/">Ahmed Akakzia</a></p>
+  
+  <nav class="site-navigation">
+    <div class="site-navigation-wrap">
+      <h2 class="screen-reader-text">Main navigation</h2>
+      <ul class="menu">
+        
+        
+        
+        <li class="menu-item ">
+          <a class="" href="/">Home</a>
+        </li>
+        
+        
+        
+        <li class="menu-item ">
+          <a class="" href="/about/">About</a>
+        </li>
+        
+        
+        
+        <li class="menu-item ">
+          <a class="" href="/publications/">Publications</a>
+        </li>
+        
+        
+        
+        <li class="menu-item ">
+          <a class="" href="/scientific/">Science Lab</a>
+        </li>
+        
+        
+        
+        <li class="menu-item ">
+          <a class="" href="/style-guide/">Style Guide</a>
+        </li>
+        
+        
+        
+        <li class="menu-item ">
+          <a class="" href="/contact/">Contact</a>
+        </li>
+        
+      </ul><!-- .menu -->
+      <button id="menu-close" class="menu-toggle"><span class="screen-reader-text">Close Menu</span><span
+          class="icon-close" aria-hidden="true"></span></button>
+    </div><!-- .site-navigation-wrap -->
+  </nav><!-- .site-navigation -->
+  <button id="menu-open" class="menu-toggle"><span class="screen-reader-text">Open Menu</span><span class="icon-menu" aria-hidden="true"></span></button>
+</header>
+
+
+      <main class="main-content fadeInDown delay_075s">
+
+  <article class="post">
+    <header class="post-header">
+      <time class="post-date" datetime="2022-09-21">September 21, 2022</time>
+      <h1 class="post-title">Goal Exploration Processes</h1>
+      <div class="post-meta">
+        By <span class="post-author">Ahmed Akakzia</span>
+      </div><!-- .post-meta -->
+      
+      <figure class="post-thumbnail image-card width-wide">
+        <img src="/images/goals.png" alt="Goal Exploration Processes">
+      </figure><!-- .post-thumbnail -->
+      
+    </header><!-- .post-header -->
+    <div class="post-content">
+      <blockquote>
+  <p>Autotelic agents—agents that are intrinsically motivated to represent, generate and pursue their own goals—aim at growing their repertoire of skills. This implies that they need not only to discover as many goals as possible, but also to learn to achieve each of these goals. When these agents evolve in environments where they have no clue about which goals they can physically reach in the first place, it becomes challenging to handle the <em>exploration-exploitation</em> dilemma.</p>
+</blockquote>
+
+<!--more-->
+
+<p>The standard Reinforcement Learning (RL) setup is not suitable for training artificial agents to achieve a set of different goals, since there is usually a unique mapping between a goal and a reward signal. A straightforward way to circumvent this issue is to define <em>goal experts</em> modules.  This implies that an embodied agent would have a set of policies equal to the number of potentially learnable goals. Whenever the agent attempts to reach a particular goal, it selects actions according to the policy that corresponds to this goal. These methods defined the first attempts to solve multi-goal problems <a class="citation" href="#kaelbling1993learning"> [1,2]</a>, some of which used modular representations of the state space <a class="citation" href="#forestier2016modular"> [3]</a>. Unfortunately, all these methods present two main drawbacks. First, they all require knowing the number of goals beforehand in order to define the number of policies to be trained. Second, they do not leverage generalization and transfer between goals, since all the policies are by definition independent from one another.</p>
+
+<p>Recently, with the promising results leveraged by neural networks as universal function approximators, a new framework where a single policy could learn to achieve multiple goals has been developed. This defines the sub-family of <em>Goal-Conditioned Reinforcement Learning</em> (GCRL), which originated from results on universal value function approximators <a class="citation" href="#schaul2015universal"> [4]</a>. The main principle is simply to condition the agent’s policy not only on observations or states, but also on embeddings of the goals to be achieved. Instead of having one policy for each goal, these methods have a single <em>contextual</em> policy, where the context defines the goal <a class="citation" href="#andrychowicz2017hindsight"> [5,6,7]</a>.</p>
+
+<h2 id="formalizing-multi-goal-reinforcement-learning-problems">Formalizing Multi-Goal Reinforcement Learning Problems</h2>
+
+<p>We propose to formalize multi-goal reinforcement learning problems. While standard RL uses a single <em>Markov Decision Process</em> (MDP) and requires the agent to finish one specific task defined by the reward function, GCRL focuses on a more general and more complex scenario where agents can fulfill multiple tasks simultaneously. To tackle such a challenge, we introduce a goal space \(\mathcal{G}~=~Z_{\mathcal{G}} \times R_{\mathcal{G}}\), where \(Z_{\mathcal{G}}\) denotes the space of goal embeddings and \(R_{\mathcal{G}}\) is the space of the corresponding reward functions. We also introduce a tractable mapping function \(\phi~:~\mathcal{S} \rightarrow Z_{\mathcal{G}}\) that maps the state to a specific goal embedding. The term <em>goal</em> should be differentiated from the term <em>task</em>, which refers to a particular MDP instance. Next, we need to differentiate the notions of <em>desired goal</em> and <em>achieved goal</em>.</p>
+
+<ul>
+  <li>
+    <p><strong>Achieved Goal:</strong> An achieved goal defines the outcome of the actions conducted by the agent during a rollout episode. More specifically, it is the output of the mapping function applied at time step \(t\) on the current state of the agent: \(\phi(s_t)\). We denote by \(p^a_\mathcal{G}\) the distribution of achieved goals. Note that these goals are exactly the goals <em>discovered</em> by the agent in play.</p>
+  </li>
+  <li>
+    <p><strong>Desired Goal:</strong> A desired goal defines the task that the agent attempts to solve. It can be either provided externally (by a simulator or an external instructing program) or generated intrinsically. We denote by \(p^d_{\mathcal{G}}\) the distribution of desired goals. This distribution is predefined when the agent receives goals from its external world, and corresponds to the distribution of achieved goals if the agent is intrinsically motivated.</p>
+  </li>
+</ul>
+
+<p>Based on these definitions, we extend RL problems to handle multiple goals by defining an augmented MDP \(\mathcal{M} = \{\mathcal{S}, \mathcal{A}, \mathcal{T}, \rho_0, \mathcal{G}, p^d_{\mathcal{G}}, \phi\}\). Consequently, the objective of \gcrl is to learn a goal-conditioned policy \(\pi~:~\mathcal{S} \times \mathcal{A} \times \mathcal{G} \rightarrow [0, 1]\) that maximizes the expectation of the cumulative reward over the distribution of desired goals:</p>
+
+\[\pi^* = \textrm{arg}\max_{\pi} ~ \mathbb{E}_{\substack{g\sim p^d_{\mathcal{G}} \textrm{, } s_0\sim \rho_0 \\ a_t\sim \pi(.~|~s_t, g) \\ s_{t+1}\sim \mathcal{T}(s_t,a_t)}} \Big[\sum_t \gamma^t R_{\mathcal{G}} (\phi(s_{t+1})~|~z_g) \Big].\]
+
+<h2 id="goal-exploration-processes">Goal Exploration Processes</h2>
+
+<p>In multi-goal setups, the objective of goal-conditioned artificial agents is to simultaneously learn as many goals as possible. In other words, the training of such agents should in principle yield optimal goal-conditioned policies that maximize the coverage of the goal space. This coverage is usually defined with reference to the distribution of desired goals. Hence, agents should be able to efficiently explore their behavioral goal space in order to match the widest possible distribution of desired goals. Goal Exploration Processes (GEPs) are a family of frameworks for exploring multiple goals. For any environment—which can be defined by a state space \(\mathcal{S}\), an action space \(\mathcal{A}\) and a transition distribution \(\mathcal{T}\) that determines the next state given a current state and an action—a GEP essentially aims at maximizing its behavioral diversity by exploring the maximum number of goals. We consider goals here as pairs composed of a fitness function and a goal embedding, where the latter is the result of projecting the state space on a predefined or learned goal space \(\mathcal{G}\) using a surjective function: each goal is mapped to at least one state.</p>
+
+<p>GEPs were first defined in the context of intrinsically motivated population based agents <a class="citation" href="#forestier2017intrinsically"> [8]</a>. In this section, we present GEPs as a general framework regardless of the underlying motivations (which can either be external or internal). First, we start from the policy search view on GEPs to derive a policy gradient perspective for goal-conditioned RL agents (See Figure 1 for an illustration). Then, depending on the source of motivations, we present the sub-families: Externally Motivated and Internally Motivated GEPs.</p>
+
+<p align="center"><img src="/images/perspectives.jpg" width="700" /></p>
+<p align="center">
+Fig.1-Illustration of the two stages leveraged by the Goal Exploration Processes (GEPs), as seen from the policy search perspective (left) and the goal-conditioned \rlearning perspective (right).
+</p>
+
+<h3 id="geps-policy-search-perspective">GEPs: Policy Search Perspective</h3>
+
+<p>From the policy search point of view, GEPs explore multiple goals starting from an initial population of policy parameters. The process leverages two phases: a first phase called the <em>bootstrapping phase</em>, which is conducted once, and a second phase called the <em>search loop</em>, which is repeated until convergence. Both phases require an <em>outcome extractor</em>, which is a predefined deterministic function that takes as input the policy parameters and outputs the outcome of applying that particular policy in the environment.</p>
+
+<p>Concerning the bootstrapping phase, \(N\) sets of policy parameters are randomly sampled from \(\Theta\). Each one of the sampled policies is fed the outcome extractor to observe the corresponding outcome, which lays in an outcome space \(\mathcal{O}\). The pair formed by each policy and the corresponding outcome is stored in a buffer defining the population where the search phase will be conducted.</p>
+
+<p>Concerning the search loop, the following cycle is repeated until convergence. First, a set of outcomes is sampled from the outcome space \(\mathcal{O}\). Second, this sampled outcomes are fed to the search module which looks in the available population for the closest policy parameters that achieve the sampled outcomes (simply using the \(K\)-nearest neighbors algorithm for instance). Third, a noise is applied to the policy parameters picked from the previous step. This promotes behavioral diversity and enables the potential discovery of new outcomes. In fact, the noisy policy parameters are fed to the outcome extractor, yielding an outcome for each entry. Finally, the obtained outcomes are appended to the initial outcome space \(\mathcal{O}\), while the pairs of policy parameters and the corresponding outcomes are added to the initial population.</p>
+
+<h3 id="geps-policy-gradient-perspective">GEPs: Policy Gradient Perspective</h3>
+
+<p>While the objective of GEPs from the policy search perspective is to maximize the size of the explored population of \(&lt;policy, outcome&gt;\)  pairs, the policy gradient view presents it differently. In this perspective, the output of the process can be a single policy and a set of goals that the policy can achieve. In the policy gradient perspective, the policy is conditioned on the goals. The process leverages two phases: first a <em>bootstrapping phase</em> to initialize the goal space, then a <em>babbling loop</em> to learn and discover new goals.</p>
+
+<p>During the bootstrapping phase, the goal space \(\mathcal{G}\) is filled with either a set of arbitrarily discovered or externally predefined goals, depending on the nature of motivations considered within the process.</p>
+
+<p>During the babbling loop, the following cycle is repeated until convergence. First, a goal generator is used to sample goals from the goal space \(\mathcal{G}\). Second, a rollout module takes as input the sampled goals, the environment, a goal-conditioned reward function, a goal conditioned policy and noise to produce trajectories. This rollout module can be viewed as running an episode within a simulator using an arbitrary policy with predefined noise. Third, the obtained trajectories are stored in a memory buffer, which feeds an update module responsible for adjusting the goal-conditioned policy so that it maximizes the reward. Finally, the new trajectories are used to extract novel goals discovered during play. These goals are added to the initial goal space.</p>
+
+<p>In the remainder of the document, we adopt the policy gradient perspective. Depending on the origins of goals obtained in the bootstrapping phase, we consider two sub-families of GEPs: externally and internally motivated.</p>
+
+<h3 id="externally-motivated-goal-exploration-processes">Externally Motivated Goal Exploration Processes</h3>
+
+<p>Externally Motivated Goal Exploration Processes (EMGEPs) is a sub-family of GEPs where goals are predefined externally. Recall that a goal is a pair of a goal achievement function and a goal embedding. During the bootstrapping phase, an external program defines the goals that will be babbled and the corresponding goal achievement functions. If goals are discrete, then all goals are given. If goals are continuous, then both the support and the goal generator are given. See Figure 2 for an illustration.</p>
+
+<p>If the goal generation process is embedded within the simulator and not the agent, then the corresponding GEP is considered as an EMGEP. Standard works that tackle the multi-goal reinforcement problem usually define a goal generation function within the environment <a class="citation" href="#schaul2015universal"> [4,5,9,10]</a>. If goals are given by an external program, such as an external artificial or human agent, the corresponding GEP is also considered as an EMGEP. In particular, instruction following agents are the most straightforward EMGEPs, where agents are fully dependent on external goals in the form of natural language instructions <a class="citation" href="#hermann2017grounded"> [11,12,13,14,15,16]</a>.</p>
+
+<h3 id="intrinsically-motivated-goal-exploration-processes">Intrinsically Motivated Goal Exploration Processes</h3>
+
+<p>Intrinsically Motivated Goal Exploration Processes (IMGEPs) is a sub-family of GEPs where goals are exclusively discovered by the exploring agents itself. In other words, there is no external signal to provide goal embeddings nor goal achievement functions. Initially, during the bootstrapping phase, IMGEP agents have no clue whatsoever on the goal space. They use an arbitrary policy performing random actions in the environment and unlocks easy goals that are close in distribution term to the distributions of initial states. Once a sufficient set of goals is discovered, the babbling phase kicks off. As opposed to the first phase, the babbling phase uses a goal-conditioned policy. The exploration-exploitation dilemma is stronger in IMGEPs: the exploration should be efficient enough to avoid getting stuck in a particular distribution of discovered goals, but should be smooth enough to avoid catastrophic forgetting or getting the policy stuck in a local minimum.</p>
+
+<p>For IMGEPs, the goal generation process is inherent to the agent. It is the agent itself that discovers the goals that it learns about (that is, it discovers both goal embeddings and goal achievement functions). Note that IMGEPs can discover a goal space whose support is defined externally (example: 3D positions, relational predicatess) <a class="citation" href="#nair2018visual"> [17,6,18,7,19]</a>, or a goal space that is previously learned in an unsupervised fashion, using information theory techniques for example <a class="citation" href="#warde2018unsupervised"> [20]</a>, see Figure 2 for an illustration.</p>
+
+<p align="center"><img src="/images/types_gep.jpg" width="600" /></p>
+<p align="center">
+Fig.2-Illustration of the two sub-families of Goal Exploration Processes (GEPs): (left) IMGEPs (right) EMGEPs. Each type has its own bootstrapping phase but both share the same babbling loop.
+</p>
+
+<h2 id="autotelic-reinforcement-learning">Autotelic Reinforcement Learning</h2>
+
+<p>The term <em>autotelic</em> was first introduced by the humanistic psychologist Mihaly Csikszenmihaly as part of his theory of <em>flow</em>. The latter corresponds to a mental state within which embodied agents are deeply involved in some complex activity without external rewarding signals <a class="citation" href="#mihaly2000beyond"> [21]</a>. His observations was based on studying painters, rock climbers and other persons who show full enjoyment in the process of their activity without direct compensation. He refers at these activites as ``autotelic”, which implies that the motivating purposes (<em>telos</em>) come from the embodied agents themselves (<em>auto</em>).</p>
+
+<p>In Artificial Intelligence, the term is used to define artificial agents that are self-motivated, self-organized and self-developing <a class="citation" href="#steels2004autotelic"> [22,23]</a>. More formally, autotelic agents are <em>intrinsically motivated</em> to represent, generate, pursue and learn about their <em>own goals</em> <a class="citation" href="#colas2022vygotskian"> [23]</a>. In the context of goal exploration processes, these agents are IMGEPs endowed with an <em>internal goal generator</em>: the goals that are explored and learned about depend only on the agents themselves.</p>
+
+<p>In this section, we present an overview on recent autotelic reinforcement learning—autotelic agents trained with RL algorithms. We distinguish three categories, depending on whether the goal space and the set of reachable goals is known in advance. First, we present the case where autotelic agents do not know the goal space representation, but need to learn it themselves in an unsupervised fashion. Second, we present the case where autotelic agents know the goal space representation beforehand, but have no clue on which goals they can physically reach. Finally, we present the case where autotelic agents know both the goal space representation and the set of reachable goals, but need to self-organize their learning in order to master these goals.</p>
+
+<h3 id="autotelic-learning-of-goal-representations">Autotelic Learning of Goal Representations</h3>
+
+<p>When the structure of the goal space is not known in advance, artificial agents need to autonomously learn good representations by themselves. They usually rely on <em>information theory</em> methods which leverage quantities such as entropy measures and mutual information <a class="citation" href="#eysenbach2018diversity"> [24,25]</a>. The main idea is to efficiently explore their state space and extract interesting features that enable them to discover new skills, which they attempt to master afterwards. They use generative models such as variational auto-encoders <a class="citation" href="#kingma2019introduction"> [26]</a> to embed high-dimensional states into compact latent codes <a class="citation" href="#laversanne2018curiosity"> [27,17,28]</a>. The underlying latent space forms the goal space, and generating a latent vector from these generative models corresponds to generating a goal from the goal space. While these approaches are task-agnostic, they usually do not leverage a sufficiently high level of abstraction. In fact, since states are usually continuous, distinguishing two different high level features corresponding to two close states is challenging (e.g. distinguishing when two blocks are close to each other without further information). Besides, the learned goal representation is usually tied to the training-set distribution, and thus cannot generate well to new situations.</p>
+
+<h3 id="autotelic-discovery-of-goals">Autotelic Discovery of Goals</h3>
+
+<p>When artificial agents know the structure of the goal space but have no clue about the goals that can be physically reached within this space, they need to efficiently explore and discover skills by themselves <a class="citation" href="#ecoffet2019go"> [29,30,18,7,19]</a>. Such scenarios become more challenging if randomly generated goals are likely to be physically unfeasible <a class="citation" href="#akakzia2021grounding"> [7,19]</a>. In this case, the only goals that the agents can learn about are the ones that they have discovered through random exploration. Consequently, such agents need to have efficient exploration mechanisms that overcome bottlenecks and explore sparsely visited regions of their goal space. They might also need additional features such as the ability to imagine new goals based on previous ones <a class="citation" href="#colas2020language"> [18]</a>, or to start exploring from specific states that maximize the discovery of new goals <a class="citation" href="#ecoffet2019go"> [29,30,7]</a>.</p>
+
+<h3 id="autotelic-mastery-of-goals">Autotelic Mastery of Goals</h3>
+
+<p>In some scenarios, artificial agents can know the structure of their goal space as well as the set of goals they can physically achieve. In other words, any goal they sample using their goal generator can potentially be reached and mastered. The main challenge for these agents is not to discover new goals, but rather to <em>autonomously organize their training goals</em> in order to master as many skills as possible. This is actually challenging, especially in environments where goals are of different complexities <a class="citation" href="#lopes2012strategic"> [31,32,33,6,9,10,7]</a>. Such agents usually use <em>Automatic Curriculum Learning</em> (ACL) methods, which rely on proxies such as learning progress or novelty to generate efficient learning curricula <a class="citation" href="#lopes2012strategic"> [31,32,33,6,7]</a>. Besides, other works train generative adversarial networks to produce goals of intermediate difficulty <a class="citation" href="#florensa2017reverse"> [34]</a>, or use methods such as asymmetric self-play to train an adversarial goal generation policy with RL which samples interesting goals for the training agent <a class="citation" href="#sukhbaatar2017intrinsic"> [35]</a>.</p>
+
+<!--- References -->
+
+<ol class="bibliography"><li><span id="kaelbling1993learning">[1]L. P. Kaelbling, <i>Learning to Achieve Goals</i>, in <i>IJCAI</i> (1993), pp. 1094–1099.</span></li>
+<li><span id="baranes2013active">[2]A. Baranes and P.-Y. Oudeyer, <i>Active Learning of Inverse Models with Intrinsically Motivated Goal Exploration in Robots</i>, Robotics and Autonomous Systems <b>61</b>, 49 (2013).</span></li>
+<li><span id="forestier2016modular">[3]S. Forestier and P.-Y. Oudeyer, <i>Modular Active Curiosity-Driven Discovery of Tool Use</i>, in <i>2016 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</i> (IEEE, 2016), pp. 3965–3972.</span></li>
+<li><span id="schaul2015universal">[4]T. Schaul, D. Horgan, K. Gregor, and D. Silver, <i>Universal Value Function Approximators</i>, in <i>International Conference on Machine Learning</i> (2015), pp. 1312–1320.</span></li>
+<li><span id="andrychowicz2017hindsight">[5]M. Andrychowicz, F. Wolski, A. Ray, J. Schneider, R. Fong, P. Welinder, B. McGrew, J. Tobin, P. Abbeel, and W. Zaremba, <i>Hindsight Experience Replay</i>, ArXiv Preprint ArXiv:1707.01495 (2017).</span></li>
+<li><span id="colas2019curious">[6]C. Colas, P.-Y. Oudeyer, O. Sigaud, P. Fournier, and M. Chetouani, <i>CURIOUS: Intrinsically Motivated Multi-Task, Multi-Goal Reinforcement Learning</i>, in <i>International Conference on Machine Learning (ICML)</i> (2019), pp. 1331–1340.</span></li>
+<li><span id="akakzia2021grounding">[7]A. Akakzia, C. Colas, P.-Y. Oudeyer, M. Chetouani, and O. Sigaud, <i>Grounding Language to Autonomously-Acquired Skills via Goal Generation</i>, in <i>9th International Conference on Learning Representations, ICLR 2021,
+Virtual Event, Austria, May 3-7, 2021</i> (OpenReview.net, 2021).</span></li>
+<li><span id="forestier2017intrinsically">[8]S. Forestier, Y. Mollard, and P.-Y. Oudeyer, <i>Intrinsically Motivated Goal Exploration Processes
+with Automatic Curriculum Learning</i>, ArXiv Preprint ArXiv:1708.02190 (2017).</span></li>
+<li><span id="lanier2019curiosity">[9]J. B. Lanier, S. McAleer, and P. Baldi, <i>Curiosity-Driven Multi-Criteria Hindsight Experience Replay</i>, CoRR <b>abs/1906.03710</b>, (2019).</span></li>
+<li><span id="li2019towards">[10]R. Li, A. Jabri, T. Darrell, and P. Agrawal, <i>Towards Practical Multi-Object Manipulation Using Relational Reinforcement Learning</i>, ArXiv Preprint <b>abs/1912.11032</b>, (2019).</span></li>
+<li><span id="hermann2017grounded">[11]K. M. Hermann, F. Hill, S. Green, F. Wang, R. Faulkner, H. Soyer, D. Szepesvari, W. M. Czarnecki, M. Jaderberg, D. Teplyashin, and others, <i>Grounded Language Learning in a Simulated 3D World</i>, ArXiv Preprint ArXiv:1706.06551 (2017).</span></li>
+<li><span id="bahdanau2018learning">[12]D. Bahdanau, F. Hill, J. Leike, E. Hughes, A. Hosseini, P. Kohli, and E. Grefenstette, <i>Learning to Understand Goal Specifications by Modelling Reward</i>, ArXiv Preprint ArXiv:1806.01946 (2018).</span></li>
+<li><span id="chan2019actrce">[13]H. Chan, Y. Wu, J. Kiros, S. Fidler, and J. Ba, <i>ACTRCE: Augmenting Experience via Teacher’s Advice For Multi-Goal Reinforcement Learning</i>, ArXiv Preprint <b>abs/1902.04546</b>, (2019).</span></li>
+<li><span id="cideron2019self">[14]G. Cideron, M. Seurin, F. Strub, and O. Pietquin, <i>Self-Educated Language Agent With Hindsight Experience Replay For Instruction Following</i>, ArXiv Preprint ArXiv:1910.09451 (2019).</span></li>
+<li><span id="jiang2019language">[15]Y. Jiang, S. S. Gu, K. P. Murphy, and C. Finn, <i>Language as an Abstraction for Hierarchical Deep Reinforcement Learning</i>, in <i>Advances in Neural Information Processing Systems</i> (2019), pp. 9414–9426.</span></li>
+<li><span id="fu2019language">[16]J. Fu, A. Korattikara, S. Levine, and S. Guadarrama, <i>From Language to Goals: Inverse Reinforcement Learning for Vision-Based Instruction Following</i>, ArXiv Preprint ArXiv:1902.07742 (2019).</span></li>
+<li><span id="nair2018visual">[17]A. V. Nair, V. Pong, M. Dalal, S. Bahl, S. Lin, and S. Levine, <i>Visual Reinforcement Learning with Imagined Goals</i>, in <i>Advances in Neural Information Processing Systems</i> (2018), pp. 9191–9200.</span></li>
+<li><span id="colas2020language">[18]C. Colas, T. Karch, N. Lair, J.-M. Dussoux, C. Moulin-Frier, P. F. Dominey, and P.-Y. Oudeyer, <i>Language as a Cognitive Tool to Imagine Goals in Curiosity Driven
+Exploration</i>, in <i>Advances in Neural Information Processing Systems 33: Annual Conference
+on Neural Information Processing Systems 2020, NeurIPS 2020, December
+6-12, 2020, Virtual</i>, edited by H. Larochelle, M. A. Ranzato, R. Hadsell, M.-F. Balcan, and H.-T. Lin (2020).</span></li>
+<li><span id="akakzia2022learning">[19]A. Akakzia and O. Sigaud, <i>Learning Object-Centered Autotelic Behaviors with Graph Neural Networks</i>, ArXiv Preprint ArXiv:2204.05141 (2022).</span></li>
+<li><span id="warde2018unsupervised">[20]D. Warde-Farley, T. Van de Wiele, T. Kulkarni, C. Ionescu, S. Hansen, and V. Mnih, <i>Unsupervised Control through Non-Parametric Discriminative Rewards</i>, ArXiv Preprint ArXiv:1811.11359 (2018).</span></li>
+<li><span id="mihaly2000beyond">[21]C. Mihaly, <i>Beyond Boredom and Anxiety: Experiencing Flow in Work and Play</i> (Jossey-Bass Publishers, 2000).</span></li>
+<li><span id="steels2004autotelic">[22]L. Steels, <i>The Autotelic Principle</i>, in <i>Embodied Artificial Intelligence</i> (Springer, 2004), pp. 231–242.</span></li>
+<li><span id="colas2022vygotskian">[23]C. Colas, T. Karch, C. Moulin-Frier, and P.-Y. Oudeyer, <i>Vygotskian Autotelic Artificial Intelligence: Language and Culture Internalization for Human-Like AI</i>, ArXiv Preprint ArXiv:2206.01134 (2022).</span></li>
+<li><span id="eysenbach2018diversity">[24]B. Eysenbach, A. Gupta, J. Ibarz, and S. Levine, <i>Diversity Is All You Need: Learning Skills without a Reward Function</i>, ArXiv Preprint ArXiv:1802.06070 (2018).</span></li>
+<li><span id="pong2019skew">[25]V. H. Pong, M. Dalal, S. Lin, A. Nair, S. Bahl, and S. Levine, <i>Skew-Fit: State-Covering Self-Supervised Reinforcement Learning</i>, ArXiv Preprint ArXiv:1903.03698 (2019).</span></li>
+<li><span id="kingma2019introduction">[26]D. P. Kingma, M. Welling, and others, <i>An Introduction to Variational Autoencoders</i>, Foundations and Trends&amp;#0174 in Machine Learning <b>12</b>, 307 (2019).</span></li>
+<li><span id="laversanne2018curiosity">[27]A. Laversanne-Finot, A. Péré, and P.-Y. Oudeyer, <i>Curiosity Driven Exploration of Learned Disentangled
+Goal Spaces</i>, ArXiv Preprint <b>abs/1807.01521</b>, (2018).</span></li>
+<li><span id="nair2019contextual">[28]A. Nair, S. Bahl, A. Khazatsky, V. Pong, G. Berseth, and S. Levine, <i>Contextual Imagined Goals for Self-Supervised Robotic Learning</i>, ArXiv Preprint <b>abs/1910.11670</b>, (2019).</span></li>
+<li><span id="ecoffet2019go">[29]A. Ecoffet, J. Huizinga, J. Lehman, K. O. Stanley, and J. Clune, <i>Go-Explore: a New Approach for Hard-Exploration Problems</i>, ArXiv Preprint ArXiv:1901.10995 (2019).</span></li>
+<li><span id="pitis2020maximum">[30]S. Pitis, H. Chan, S. Zhao, B. Stadie, and J. Ba, <i>Maximum Entropy Gain Exploration for Long Horizon Multi-Goal Reinforcement Learning</i>, in <i>International Conference on Machine Learning</i> (PMLR, 2020), pp. 7750–7761.</span></li>
+<li><span id="lopes2012strategic">[31]M. Lopes and P.-Y. Oudeyer, <i>The Strategic Student Approach for Life-Long
+Exploration and Learning</i>, in <i>IEEE International Conference on Development And
+Learning and Epigenetic Robotics</i> (IEEE, 2012), pp. 1–8.</span></li>
+<li><span id="bellemare2016unifying">[32]M. Bellemare, S. Srinivasan, G. Ostrovski, T. Schaul, D. Saxton, and R. Munos, <i>Unifying Count-Based Exploration and Intrinsic Motivation</i>, Advances in Neural Information Processing Systems <b>29</b>, 1471 (2016).</span></li>
+<li><span id="burda2018large">[33]Y. Burda, H. Edwards, D. Pathak, A. Storkey, T. Darrell, and A. A. Efros, <i>Large-Scale Study of Curiosity-Driven Learning</i>, ArXiv Preprint ArXiv:1808.04355 (2018).</span></li>
+<li><span id="florensa2017reverse">[34]C. Florensa, D. Held, M. Wulfmeier, M. Zhang, and P. Abbeel, <i>Reverse Curriculum Generation for Reinforcement Learning</i>, ArXiv Preprint ArXiv:1707.05300 (2017).</span></li>
+<li><span id="sukhbaatar2017intrinsic">[35]S. Sukhbaatar, Z. Lin, I. Kostrikov, G. Synnaeve, A. Szlam, and R. Fergus, <i>Intrinsic Motivation and Automatic Curricula via Asymmetric Self-Play</i>, ArXiv Preprint ArXiv:1703.05407 (2017).</span></li></ol>
+
+
+    </div><!-- .post-content -->
+    <div class="post-share">
+      <span>Share:</span>
+      <a target="_blank"
+        href="https://twitter.com/intent/tweet?text=Goal%20Exploration%20Processes&amp;url=http://localhost:4000/goal-exploration-processes" rel="noopener">Twitter</a>
+      <a target="_blank"
+        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/goal-exploration-processes&amp;t=Goal%20Exploration%20Processes" rel="noopener">Facebook</a>
+    </div><!-- .share-post -->
+    <div class="author-box">
+      
+      <div class="author-avatar" style="background-image: url('images/author.png')"><span class="screen-reader-text">Ahmed Akakzia's Picture</span></div>
+      
+      <div class="author-details">
+        <h2 class="author-title">About Ahmed Akakzia</h2>
+        <div class="author-bio"><p>Ahmed is a final year PhD candidate, passionate about artificial intelligence</p>
+</div>
+        
+        <span class="author-location">Paris, France</span>
+        
+        
+      </div><!-- .author-details -->
+    </div><!-- .author-box -->
+  </article><!-- .post -->
+
+  
+    <div class="comments-area">
+  <div class="comments-inner">
+    <h2 class="comments-title">Comments</h2>
+    <div id="disqus_thread"></div>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+        Disqus</a>.</noscript>
+  </div><!-- .comments-inner -->
+</div><!-- .comments-area -->
+
+<script type="text/javascript">
+  var disqus_shortname = 'justgoodthemes';
+  var disqus_developer = 0;
+  (function () {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+  
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</main><!-- .main-content -->
+      <footer class="site-footer">
+  <div class="offsite-links">
+    
+      
+<a href="https://twitter.com/aakakzia" target="_blank" rel="noopener">
+  <span class="fa-twitter" aria-hidden="true"></span>
+  <span class="screen-reader-text">Twitter</span>
+</a>
+
+<a href="https://github.com/akakzia" target="_blank" rel="noopener">
+  <span class="fa-github" aria-hidden="true"></span>
+  <span class="screen-reader-text">GitHub</span>
+</a>
+
+<a href="https://www.linkedin.com/in/ahmed-akakzia/" target="_blank" rel="noopener">
+  <span class="fa-linkedin" aria-hidden="true"></span>
+  <span class="screen-reader-text">LinkedIn</span>
+</a>
+
+    
+  </div><!-- .offsite-links -->
+  <div class="footer-bottom">
+    <div class="site-info">
+      <p>© 2022 Ahmed Akakzia. Theme customized from <a href="https://www.justgoodthemes.com">JustGoodThemes</a>.</p>
+
+    </div><!-- .site-info -->
+    <a href="#page" id="back-to-top" class="back-to-top"><span class="screen-reader-text">Back to the top </span>&#8593;</a>
+  </div><!-- .footer-bottom -->
+</footer><!-- .site-footer -->
+
+    </div><!-- .inner -->
+  </div><!-- .site -->
+
+  <!-- Scripts -->
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script>
+  
+  <script src="/assets/js/plugins.js"></script>
+  <script src="/assets/js/custom.js"></script>
+
+</body>
+</html>
