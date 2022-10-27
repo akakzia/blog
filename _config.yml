@@ -14,7 +14,7 @@ lang: en-US
 title: "Ahmed Akakzia"
 
 # A description of your site for meta tag, search engine results.
-description: "Welcome to my professional and personal website."
+description: "Professional and personal website."
 
 # The subpath of your site, e.g. /blog, for generating urls.
 baseurl: "/blog"
@@ -30,16 +30,12 @@ google_analytics: ""
 
 # Site navigation - each item must have a title and a url.
 navigation:
-  - text: Home
+  - text: Scientific Lab
     url: /blog/
-  - text: About
-    url: /blog/about/
   - text: Publications
     url: /blog/publications/
-  - text: Science Lab
-    url: /blog/scientific/
-  - text: Style Guide
-    url: /blog/style-guide/
+  - text: About
+    url: /blog/about/
   - text: Contact
     url: /blog/contact/
 
