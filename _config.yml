@@ -17,7 +17,7 @@ title: "Ahmed Akakzia"
 description: "Welcome to my professional and personal website."
 
 # The subpath of your site, e.g. /blog, for generating urls.
-baseurl: ""
+baseurl: "/webpage"
 
 # The base hostname & protocol of your site for where absolute urls are needed.
 url: "https://scriptor-jekyll.netlify.com"
