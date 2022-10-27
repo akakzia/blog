@@ -3,10 +3,10 @@
     <channel>
         <title>Ahmed Akakzia</title>
         <description>Welcome to my professional and personal website.</description>
-        <link>http://localhost:4000/</link>
-        <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Wed, 26 Oct 2022 18:36:55 +0200</pubDate>
-        <lastBuildDate>Wed, 26 Oct 2022 18:36:55 +0200</lastBuildDate>
+        <link>http://localhost:4000/webpage/</link>
+        <atom:link href="http://localhost:4000/webpage/feed.xml" rel="self" type="application/rss+xml"/>
+        <pubDate>Thu, 27 Oct 2022 12:33:44 +0200</pubDate>
+        <lastBuildDate>Thu, 27 Oct 2022 12:33:44 +0200</lastBuildDate>
         <generator>Jekyll v4.0.1</generator>
         
             <item>
@@ -154,8 +154,8 @@ Virtual Event, Austria, May 3-7, 2021&lt;/i&gt; (OpenReview.net, 2021).&lt;/span
 &lt;li&gt;&lt;span id=&quot;lake2015human&quot;&gt;[59]B. M. Lake, R. Salakhutdinov, and J. B. Tenenbaum, &lt;i&gt;Human-Level Concept Learning through Probabilistic Program Induction&lt;/i&gt;, Science &lt;b&gt;350&lt;/b&gt;, 1332 (2015).&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;
 </description>
                 <pubDate>Sun, 25 Sep 2022 00:00:00 +0200</pubDate>
-                <link>http://localhost:4000/graph-neural-networks</link>
-                <guid isPermaLink="true">http://localhost:4000/graph-neural-networks</guid>
+                <link>http://localhost:4000/webpage/graph-neural-networks</link>
+                <guid isPermaLink="true">http://localhost:4000/webpage/graph-neural-networks</guid>
                 
                 
             </item>
@@ -303,8 +303,8 @@ Learning and Epigenetic Robotics&lt;/i&gt; (IEEE, 2012), pp. 1–8.&lt;/span&gt;
 
 </description>
                 <pubDate>Wed, 21 Sep 2022 00:00:00 +0200</pubDate>
-                <link>http://localhost:4000/goal-exploration-processes</link>
-                <guid isPermaLink="true">http://localhost:4000/goal-exploration-processes</guid>
+                <link>http://localhost:4000/webpage/goal-exploration-processes</link>
+                <guid isPermaLink="true">http://localhost:4000/webpage/goal-exploration-processes</guid>
                 
                 
             </item>
@@ -419,8 +419,8 @@ Fig.2 - Embodied Artificial Agents with and without PMA module.
 &lt;li&gt;&lt;span id=&quot;minervini2018towards&quot;&gt;[28]P. Minervini, M. Bosnjak, T. Rocktäschel, and S. Riedel, &lt;i&gt;Towards Neural Theorem Proving at Scale&lt;/i&gt;, ArXiv Preprint ArXiv:1807.08204 (2018).&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;
 </description>
                 <pubDate>Fri, 19 Aug 2022 00:00:00 +0200</pubDate>
-                <link>http://localhost:4000/the-mandlerian-theory</link>
-                <guid isPermaLink="true">http://localhost:4000/the-mandlerian-theory</guid>
+                <link>http://localhost:4000/webpage/the-mandlerian-theory</link>
+                <guid isPermaLink="true">http://localhost:4000/webpage/the-mandlerian-theory</guid>
                 
                 
             </item>
@@ -434,8 +434,8 @@ Fig.2 - Embodied Artificial Agents with and without PMA module.
 &lt;p&gt;&lt;a href=&quot;https://theconversation.com/comment-motiver-une-ia-148869&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;Continue reading →&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
 </description>
                 <pubDate>Fri, 20 Nov 2020 00:00:00 +0100</pubDate>
-                <link>http://localhost:4000/how-to-motivate-ai</link>
-                <guid isPermaLink="true">http://localhost:4000/how-to-motivate-ai</guid>
+                <link>http://localhost:4000/webpage/how-to-motivate-ai</link>
+                <guid isPermaLink="true">http://localhost:4000/webpage/how-to-motivate-ai</guid>
                 
                 
             </item>
@@ -624,8 +624,8 @@ g_{MTL} &amp;amp; = &amp;amp; \sum_{i=0}^{Nk-1} \nabla_{\psi_i} \mathcal{L} (\ps
 &lt;li&gt;&lt;span id=&quot;rajeswaran2019meta&quot;&gt;[18]A. Rajeswaran, C. Finn, S. Kakade, and S. Levine, &lt;i&gt;Meta-Learning with Implicit Gradients&lt;/i&gt;, ArXiv Preprint ArXiv:1909.04630 (2019).&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;
 </description>
                 <pubDate>Thu, 23 May 2019 00:00:00 +0200</pubDate>
-                <link>http://localhost:4000/gargaml</link>
-                <guid isPermaLink="true">http://localhost:4000/gargaml</guid>
+                <link>http://localhost:4000/webpage/gargaml</link>
+                <guid isPermaLink="true">http://localhost:4000/webpage/gargaml</guid>
                 
                 
             </item>
@@ -1182,8 +1182,8 @@ The first issue can be seen as an outlier detection problem : the users that are
 I believe that if I had more time, I could have done some other things with this data in order to emphasize on the cited bottlenecks. For example, I would formulate a machine learning problem of outlier detection. I would consider the p2p feature as a target feature and try to fit a function that estimates it from a training sample. Then, I would predict this target variable and see which users have a low / zero p2p retrieval value. These users would be considered as outliers and would be eliminated from the scheme. Then I would redo a plot of the percentage of data retrieval from p2p for the remaining users and see its effect. I think that this percentage will grow and therefor the users will benefit more from the p2p scheme.&lt;/p&gt;
 </description>
                 <pubDate>Sun, 10 Mar 2019 00:00:00 +0100</pubDate>
-                <link>http://localhost:4000/from-cdn-to-p2p</link>
-                <guid isPermaLink="true">http://localhost:4000/from-cdn-to-p2p</guid>
+                <link>http://localhost:4000/webpage/from-cdn-to-p2p</link>
+                <guid isPermaLink="true">http://localhost:4000/webpage/from-cdn-to-p2p</guid>
                 
                 
             </item>
@@ -2557,8 +2557,8 @@ $\rightarrow$ &lt;b&gt;We can also be in the case of an early alarm. For example
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
                 <pubDate>Mon, 14 Jan 2019 00:00:00 +0100</pubDate>
-                <link>http://localhost:4000/aircraft-starting-kit</link>
-                <guid isPermaLink="true">http://localhost:4000/aircraft-starting-kit</guid>
+                <link>http://localhost:4000/webpage/aircraft-starting-kit</link>
+                <guid isPermaLink="true">http://localhost:4000/webpage/aircraft-starting-kit</guid>
                 
                 
             </item>
