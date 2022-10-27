@@ -31,13 +31,13 @@ google_analytics: ""
 # Site navigation - each item must have a title and a url.
 navigation:
   - text: Scientific Lab
-    url: /blog/
+    url: /blog/index
   - text: Publications
-    url: /blog/publications/
+    url: /blog/publications
   - text: About
-    url: /blog/about/
+    url: /blog/about
   - text: Contact
-    url: /blog/contact/
+    url: /blog/contact
 
 # The shortname for your Disqus site to enable comments.
 disqus: justgoodthemes
