@@ -4,7 +4,7 @@ title: Publications
 description: List of the scientific publications
 feature_image: images/library.jpg
 ---
-For an exhaustive updated list of scientific publications, please check my [Google Scholar Page](https://scholar.google.com/citations?user=U2CTuQUAAAAJ&hl=fr). My extended resume is [here]({{ site.url }}/blog/assets/Resume.pdf)
+For an exhaustive updated list of scientific publications, please check my [Google Scholar Page](https://scholar.google.com/citations?user=U2CTuQUAAAAJ&hl=fr). My extended resume is [here]({{ site.baseurl }}/assets/Resume.pdf)
 
 # Thesis 
 + **Akakzia, Ahmed**. (2022). _Teaching Predicate-based Autotelic Agents: Learning Goal Representations with a Social Caregiver for Intrinsically Motivated Agents._ <br>
@@ -37,5 +37,5 @@ Available [code](https://github.com/akakzia/decstr).
 
 ## 2019
 + **A Akakzia**, M Chetouani, O Sigaud (2019). [GARGAML: Addressing Multitask and Multi-goal Transfer with Goal-conditioned Meta Reinforcement Learning and Replay]({{ site.url }}/blog/assets/GARGAML.pdf).<br>
-Available [slides]({{ site.url }}/blog/assets/slides_gargaml.pdf)
+Available [slides]({{ site.baseurl }}/assets/slides_gargaml.pdf)
 
