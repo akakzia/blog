@@ -544,7 +544,7 @@ bar_not_connected(data, not_connected)
 
 
 
-![png](/images/p2p_video_streaming_25_1.png)
+![png](/blog/images/p2p_video_streaming_25_1.png)
     
 
 
@@ -596,25 +596,25 @@ for st in range(1,5):
 
 
     
-![png](/images/p2p_video_streaming_28_0.png)
+![png](/blog/images/p2p_video_streaming_28_0.png)
     
 
 
 
     
-![png](/images/p2p_video_streaming_28_1.png)
+![png](/blog/images/p2p_video_streaming_28_1.png)
     
 
 
 
     
-![png](/images/p2p_video_streaming_28_2.png)
+![png](/blog/images/p2p_video_streaming_28_2.png)
     
 
 
 
     
-![png](/images/p2p_video_streaming_28_3.png)
+![png](/blog/images/p2p_video_streaming_28_3.png)
     
 
 
@@ -626,31 +626,31 @@ for st in range(5,10):
 
 
     
-![png](/images/p2p_video_streaming_29_0.png)
+![png](/blog/images/p2p_video_streaming_29_0.png)
     
 
 
 
     
-![png](/images/p2p_video_streaming_29_1.png)
+![png](/blog/images/p2p_video_streaming_29_1.png)
     
 
 
 
     
-![png](/images/p2p_video_streaming_29_2.png)
+![png](/blog/images/p2p_video_streaming_29_2.png)
     
 
 
 
     
-![png](/images/p2p_video_streaming_29_3.png)
+![png](/blog/images/p2p_video_streaming_29_3.png)
     
 
 
 
     
-![png](/images/p2p_video_streaming_29_4.png)
+![png](/blog/images/p2p_video_streaming_29_4.png)
     
 
 

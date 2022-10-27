@@ -47,7 +47,7 @@ The Perceptual Meaning Analysis (PMA) {%cite mandler2012spatial %} is a general 
 
 In the introduction to this section, we highlighted that PMA considers only a set of primitives. A fair question arises: _what exactly are these primitives, and how do they make PMA more promising than other approaches?_ The theory of prelinguistic concept formation established by PMA suggests that perception-based representation learning is based on _attended information_. In fact, it starts the conceptual system by directing the attention of infants to things moving on paths through space {%cite mandler2012spatial %}. A toddler sees for example the hand of her caregiver moving to grasp a toy. It is at the moment of touching the toy (establishing the ``LINK" as described by Mandler {%cite mandler2012spatial %}) that the attention of the toddler gets focused on the specific perception of a hand touching an object. PMA translates this _temporal information_ (hand moving towards the toy) to _iconic spatial form_ (hand far from toy, hand in contact with the toy). Based on these thoughts, what is actually innate within infants is the _attention capacity towards temporal changes_, allowing them to distinguish different situations based on the contact. That is why the earliest concepts learned correspond to spatial relations {%cite mandler2012spatial %}. Compared to earlier approaches, PMA provides a domain-general mechanism, as infants may learn concepts in one situation (the example of the caregiver reaching the toy), and generalize it to any other situation including a physical contact between two objects. Figure 1 illustrates the idea behind the PMA module.   
 
-<p align = "center"><img src = "/images/pma_module.jpg" width="800"></p><p align = "center">
+<p align = "center"><img src = "/blog/images/pma_module.jpg" width="800"></p><p align = "center">
 Fig.1 - Illustration of the PMA module. It takes as input temporal information and translates it into iconic spatial static form. It only requires attention to temporal physical changes.
 </p>
 
@@ -72,7 +72,7 @@ The field of Artificial Intelligence (AI) confronts two opposing currents: _conn
 
 As PMA describes a model for prelinguistic concept formation in infants, endowing artificial agents with a similar mechanism seems promising. More specifically, embodied artificial agents that are endowed with raw sensors might make use of a conceptual PMA-like mechanism. Such agents would be able not only to perceive their world as it is, but to build concepts and categorizations based on spatial relations. In Figure 2, we illustrate the potential capabilities of PMA-based agents compared with standard ones. PMA-based agents would in principle be able to categorize their sensory perceptions into semantic categories based on the underlying semantic features. This might facilitate skill acquisition, facilitate language grounding and increase behavioral diversity.
 
-<p align = "center"><img src = "/images/pma.jpg" width="800"></p><p align = "center">
+<p align = "center"><img src = "/blog/images/pma.jpg" width="800"></p><p align = "center">
 Fig.2 - Embodied Artificial Agents with and without PMA module.
 </p>
 

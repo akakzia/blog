@@ -745,7 +745,7 @@ plt.title("Distribution of engines with respect to their failure cycles")
 
 
     
-![png](/images/aircraft_starting_kit_30_1.png)
+![png](/blog/images/aircraft_starting_kit_30_1.png)
     
 
 
@@ -789,7 +789,7 @@ plt.title("Number of observation per class ")
 
 
     
-![png](/images/aircraft_starting_kit_35_1.png)
+![png](/blog/images/aircraft_starting_kit_35_1.png)
     
 
 
@@ -807,7 +807,7 @@ plt.show()
 
 
     
-![png](/images/aircraft_starting_kit_38_0.png)
+![png](/blog/images/aircraft_starting_kit_38_0.png)
     
 
 
@@ -825,7 +825,7 @@ g = g.add_legend()
 
 
     
-![png](/images/aircraft_starting_kit_40_0.png)
+![png](/blog/images/aircraft_starting_kit_40_0.png)
     
 
 
@@ -923,19 +923,19 @@ for eng in eng_ids:
 
 
     
-![png](/images/aircraft_starting_kit_45_1.png)
+![png](/blog/images/aircraft_starting_kit_45_1.png)
     
 
 
 
     
-![png](/images/aircraft_starting_kit_45_2.png)
+![png](/blog/images/aircraft_starting_kit_45_2.png)
     
 
 
 
     
-![png](/images/aircraft_starting_kit_45_3.png)
+![png](/blog/images/aircraft_starting_kit_45_3.png)
     
 
 
@@ -957,7 +957,7 @@ sns.violinplot(data=X_conc,x="labels", y="s2")
 
 
     
-![png](/images/aircraft_starting_kit_48_1.png)
+![png](/blog/images/aircraft_starting_kit_48_1.png)
     
 
 
@@ -1312,7 +1312,7 @@ plt.show()
 
 
     
-![png](/images/aircraft_starting_kit_67_0.png)
+![png](/blog/images/aircraft_starting_kit_67_0.png)
     
 
 
@@ -1411,7 +1411,7 @@ plot_classes_proba(eng_id , X_test , y_test , y_pred_proba)
 
 
     
-![png](/images/aircraft_starting_kit_73_0.png)
+![png](/blog/images/aircraft_starting_kit_73_0.png)
     
 
 

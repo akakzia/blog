@@ -17,7 +17,7 @@ title: "Ahmed Akakzia"
 description: "Welcome to my professional and personal website."
 
 # The subpath of your site, e.g. /blog, for generating urls.
-baseurl: "/webpage"
+baseurl: "/blog"
 
 # The base hostname & protocol of your site for where absolute urls are needed.
 url: "https://scriptor-jekyll.netlify.com"
@@ -31,17 +31,17 @@ google_analytics: ""
 # Site navigation - each item must have a title and a url.
 navigation:
   - text: Home
-    url: /webpage/
+    url: /blog/
   - text: About
-    url: /webpage/about/
+    url: /blog/about/
   - text: Publications
-    url: /webpage/publications/
+    url: /blog/publications/
   - text: Science Lab
-    url: /webpage/scientific/
+    url: /blog/scientific/
   - text: Style Guide
-    url: /webpage/style-guide/
+    url: /blog/style-guide/
   - text: Contact
-    url: /webpage/contact/
+    url: /blog/contact/
 
 # The shortname for your Disqus site to enable comments.
 disqus: justgoodthemes

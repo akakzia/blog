@@ -37,7 +37,7 @@ In multi-goal setups, the objective of goal-conditioned artificial agents is to 
 
 GEPs were first defined in the context of intrinsically motivated population based agents {%cite forestier2017intrinsically %}. In this section, we present GEPs as a general framework regardless of the underlying motivations (which can either be external or internal). First, we start from the policy search view on GEPs to derive a policy gradient perspective for goal-conditioned RL agents (See Figure 1 for an illustration). Then, depending on the source of motivations, we present the sub-families: Externally Motivated and Internally Motivated GEPs. 
 
-<p align = "center"><img src = "/images/perspectives.jpg" width="700"></p><p align = "center">
+<p align = "center"><img src = "/blog/images/perspectives.jpg" width="700"></p><p align = "center">
 Fig.1-Illustration of the two stages leveraged by the Goal Exploration Processes (GEPs), as seen from the policy search perspective (left) and the goal-conditioned \rlearning perspective (right).
 </p>
 
@@ -72,7 +72,7 @@ Intrinsically Motivated Goal Exploration Processes (IMGEPs) is a sub-family of G
 
 For IMGEPs, the goal generation process is inherent to the agent. It is the agent itself that discovers the goals that it learns about (that is, it discovers both goal embeddings and goal achievement functions). Note that IMGEPs can discover a goal space whose support is defined externally (example: 3D positions, relational predicatess) {%cite nair2018visual colas2019curious colas2020language akakzia2021grounding akakzia2022learning %}, or a goal space that is previously learned in an unsupervised fashion, using information theory techniques for example {%cite warde2018unsupervised %}, see Figure 2 for an illustration.  
 
-<p align = "center"><img src = "/images/types_gep.jpg" width="600"></p><p align = "center">
+<p align = "center"><img src = "/blog/images/types_gep.jpg" width="600"></p><p align = "center">
 Fig.2-Illustration of the two sub-families of Goal Exploration Processes (GEPs): (left) IMGEPs (right) EMGEPs. Each type has its own bootstrapping phase but both share the same babbling loop.
 </p>
 
