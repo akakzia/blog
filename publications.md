@@ -36,6 +36,6 @@ Accepted at [ICML's LaReL Workshop 2020](https://larel-ws.github.io/).<br>
 Available [code](https://github.com/akakzia/decstr).
 
 ## 2019
-+ **A Akakzia**, M Chetouani, O Sigaud (2019). [GARGAML: Addressing Multitask and Multi-goal Transfer with Goal-conditioned Meta Reinforcement Learning and Replay]({{ site.url }}/blog/assets/GARGAML.pdf).<br>
++ **A Akakzia**, M Chetouani, O Sigaud (2019). [GARGAML: Addressing Multitask and Multi-goal Transfer with Goal-conditioned Meta Reinforcement Learning and Replay]({{ site.baseurl }}/assets/GARGAML.pdf).<br>
 Available [slides]({{ site.baseurl }}/assets/slides_gargaml.pdf)
 
