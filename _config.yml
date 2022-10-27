@@ -31,23 +31,23 @@ google_analytics: ""
 # Site navigation - each item must have a title and a url.
 navigation:
   - text: Home
-    url: /
+    url: /webpage/
   - text: About
-    url: /about/
+    url: /webpage/about/
   - text: Publications
-    url: /publications/
+    url: /webpage/publications/
   - text: Science Lab
-    url: /scientific/
+    url: /webpage/scientific/
   - text: Style Guide
-    url: /style-guide/
+    url: /webpage/style-guide/
   - text: Contact
-    url: /contact/
+    url: /webpage/contact/
 
 # The shortname for your Disqus site to enable comments.
 disqus: justgoodthemes
 
 # Colors
-accent_color: '#e3a1a1'
+accent_color: '#b32b2b'
 
 # Site footer
 footer:
@@ -76,4 +76,4 @@ sass:
 
 # Scholar 
 scholar:
-    style: physical-review-d
+    style: acm-siggraph
