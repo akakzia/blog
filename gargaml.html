@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Comparing Multi-task and Meta Reinforcement Learning</title>
   <meta name="description" content="A preliminary study of state-of-the-art multi-task and meta-learning algorithms.">
-  <link rel="canonical" href="http://localhost:4000/webpage/gargaml">
+  <link rel="canonical" href="http://localhost:4000/blog/gargaml">
   <link rel="alternate" type="application/rss+xml" title="Ahmed Akakzia Feed"
-    href="http://localhost:4000/webpage/feed.xml">
+    href="http://localhost:4000/blog/feed.xml">
   
-  <link rel="shortcut icon" href="/webpage/images/tabicon.png" type="image/png" />
+  <link rel="shortcut icon" href="/blog/images/tabicon.png" type="image/png" />
   
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i%7CNoto+Serif:400,400i,700,700i&display=swap" rel="stylesheet">
-  <link href="/webpage/assets/css/style.css" rel="stylesheet">
+  <link href="/blog/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -21,7 +21,7 @@
     <div class="inner">
       <header class="site-header">
   
-  <p class="site-title"><a class="logo-text" href="/webpage/">Ahmed Akakzia</a></p>
+  <p class="site-title"><a class="logo-text" href="/blog/">Ahmed Akakzia</a></p>
   
   <nav class="site-navigation">
     <div class="site-navigation-wrap">
@@ -31,37 +31,25 @@
         
         
         <li class="menu-item ">
-          <a class="" href="/">Home</a>
+          <a class="" href="/blog/">Scientific Lab</a>
         </li>
         
         
         
         <li class="menu-item ">
-          <a class="" href="/about/">About</a>
+          <a class="" href="/blog/publications/">Publications</a>
         </li>
         
         
         
         <li class="menu-item ">
-          <a class="" href="/publications/">Publications</a>
+          <a class="" href="/blog/about/">About</a>
         </li>
         
         
         
         <li class="menu-item ">
-          <a class="" href="/scientific/">Science Lab</a>
-        </li>
-        
-        
-        
-        <li class="menu-item ">
-          <a class="" href="/style-guide/">Style Guide</a>
-        </li>
-        
-        
-        
-        <li class="menu-item ">
-          <a class="" href="/contact/">Contact</a>
+          <a class="" href="/blog/contact/">Contact</a>
         </li>
         
       </ul><!-- .menu -->
@@ -84,7 +72,7 @@
       </div><!-- .post-meta -->
       
       <figure class="post-thumbnail image-card width-wide">
-        <img src="/webpage/images/multitask.png" alt="Comparing Multi-task and Meta Reinforcement Learning">
+        <img src="/blog/images/multitask.png" alt="Comparing Multi-task and Meta Reinforcement Learning">
       </figure><!-- .post-thumbnail -->
       
     </header><!-- .post-header -->
@@ -97,31 +85,31 @@
 
 <!--- Introduction -->
 
-<p>In an open-ended learning context <a class="citation" href="#doncieux2018open"> [1]</a>, an agent faces a continuous stream of unforeseen tasks along its lifetime and must learn how to accomplish them.
+<p>In an open-ended learning context <a class="citation" href="#doncieux2018open">[Doncieux et al. 2018]</a>, an agent faces a continuous stream of unforeseen tasks along its lifetime and must learn how to accomplish them.
 For doing so, two closely related reinforcement learning (<em>RL</em>) frameworks are available: multitask learning (<em>MTL</em>) and meta reinforcement learning (<em>MRL</em>).</p>
 
-<p>Multitask learning was first defined in <a class="citation" href="#caruana97multitask"> [2]</a>. The general idea was to train a unique parametric policy to solve a finite set of tasks so that it would finally perform well on all these tasks. Various <em>MTL</em> frameworks have been defined since then <a class="citation" href="#yang2014unified"> [3]</a>. For instance, an <em>MTL</em> agent may learn several policies sharing only a subset of their parameters so that <strong>transfer learning</strong> can occur between these policies <a class="citation" href="#taylor2009transfer"> [4]</a>.
-Multitask learning is the matter of an increasing research effort since the advent of powerful <em>RL</em> methods <a class="citation" href="#florensa2018automatic"> [5,6,7]</a>.</p>
+<p>Multitask learning was first defined in <a class="citation" href="#caruana97multitask">[Caruana 1997]</a>. The general idea was to train a unique parametric policy to solve a finite set of tasks so that it would finally perform well on all these tasks. Various <em>MTL</em> frameworks have been defined since then <a class="citation" href="#yang2014unified">[Yang and Hospedales 2014]</a>. For instance, an <em>MTL</em> agent may learn several policies sharing only a subset of their parameters so that <strong>transfer learning</strong> can occur between these policies <a class="citation" href="#taylor2009transfer">[Taylor and Stone 2009]</a>.
+Multitask learning is the matter of an increasing research effort since the advent of powerful <em>RL</em> methods <a class="citation" href="#florensa2018automatic">[Florensa et al. 2018; Veeriah et al. 2018; Ghosh et al. 2018]</a>.</p>
 
-<p align="center"><img src="/images/task_goal.png" width="600" /></p>
+<p align="center"><img src="/blog/images/task_goal.png" width="600" /></p>
 <p align="center">
 Fig.1 - The Fetch Environment with different tasks and goals.
 </p>
 
-<p>But this effort came with a drift from the multitask to the multigoal context. Actually, the distinction between tasks and goals is not always clear. In this blog post, I will mainly rely on an intuitive notion illustrated in <em>Figure 1</em> of task as some abstract activity such as <strong>push blocks</strong> or <strong>stack blocks</strong>, and we define a goal as some concrete state of the world that an agent may want to achieve given its current task, such as <strong>pick block “A” and place it inside this specific area</strong>. If we stick to these definition, a lot of work pretending to transfer between tasks actually transfer between goals. Anyways, for multigoal learning, goal-conditioned policies (<em>GC-P</em>) have emerged as a satisfactory framework to represent a set of policies to address various goals, as it naturally provides some generalization property between these goals. Besides, the use of Hindsight Experience Replay (<em>HER</em>) <a class="citation" href="#andrychowicz2017hindsight"> [8]</a> has been shown to significantly speed up the process of learning to reach several goals when the reward is sparse.
+<p>But this effort came with a drift from the multitask to the multigoal context. Actually, the distinction between tasks and goals is not always clear. In this blog post, I will mainly rely on an intuitive notion illustrated in <em>Figure 1</em> of task as some abstract activity such as <strong>push blocks</strong> or <strong>stack blocks</strong>, and we define a goal as some concrete state of the world that an agent may want to achieve given its current task, such as <strong>pick block “A” and place it inside this specific area</strong>. If we stick to these definition, a lot of work pretending to transfer between tasks actually transfer between goals. Anyways, for multigoal learning, goal-conditioned policies (<em>GC-P</em>) have emerged as a satisfactory framework to represent a set of policies to address various goals, as it naturally provides some generalization property between these goals. Besides, the use of Hindsight Experience Replay (<em>HER</em>) <a class="citation" href="#andrychowicz2017hindsight">[Andrychowicz et al. 2017]</a> has been shown to significantly speed up the process of learning to reach several goals when the reward is sparse.
 In this context, works trying to learn several tasks and several goals at the same time are just emerging (see Table 1 below).</p>
 
-<p align="center"><img src="/images/multi_goal_table.png" width="800" /></p>
+<p align="center"><img src="/blog/images/multi_goal_table.png" width="800" /></p>
 <p align="center">
-Table 1. Classification of multi-goal approaches (source <a class="citation" href="#colas2019curious"> [9]</a>).
+Table 1. Classification of multi-goal approaches (source <a class="citation" href="#colas2019curious">[Colas et al. 2019]</a>).
 </p>
 
-<p>Meta reinforcement learning is a broader framework. Generally speaking, it consists in using inductive bias obtained from learning a set of policies, so that new policies for addressing similar unknown tasks can be learned in only a few gradient steps. In this latter process called <em>fine tuning</em>, policy parameters are tuned specifically to each new task <a class="citation" href="#rakelly2019efficient"> [10]</a>.
-The <em>MRL</em> framework encompasses several different perspectives <a class="citation" href="#weng2019metaRL"> [11]</a>.
-One consists in learning a recurrent neural network whose dynamics update the weights of a policy so as to mimic a reinforcement learning process <a class="citation" href="#duan2016rl"> [12,13]</a>. This approach is classified as <em>context-based</em> meta-learning in <a class="citation" href="#rakelly2019efficient"> [10]</a> as the internal variables of the recurrent network can be seen as latent context variables.
-Another perspective is efficient parameter initialization <a class="citation" href="#finn2017model"> [14]</a>, classified as <em>gradient-based</em> meta-learning. Here, we focus on a family of algorithms encompassing the second perspective which started with Model-Agnostic Meta-Learning <em>MAML</em> <a class="citation" href="#finn2017model"> [14]</a>. A crucial feature of this family of algorithms is that they introduce a specific mechanism to favor transfer between tasks, by looking for initial policy parameters that are close enough to the manifold of optimal policy parameters over all tasks.</p>
+<p>Meta reinforcement learning is a broader framework. Generally speaking, it consists in using inductive bias obtained from learning a set of policies, so that new policies for addressing similar unknown tasks can be learned in only a few gradient steps. In this latter process called <em>fine tuning</em>, policy parameters are tuned specifically to each new task <a class="citation" href="#rakelly2019efficient">[Rakelly et al. 2019]</a>.
+The <em>MRL</em> framework encompasses several different perspectives <a class="citation" href="#weng2019metaRL">[Weng 2019]</a>.
+One consists in learning a recurrent neural network whose dynamics update the weights of a policy so as to mimic a reinforcement learning process <a class="citation" href="#duan2016rl">[Duan et al. 2016; Wang et al. 2016]</a>. This approach is classified as <em>context-based</em> meta-learning in <a class="citation" href="#rakelly2019efficient">[Rakelly et al. 2019]</a> as the internal variables of the recurrent network can be seen as latent context variables.
+Another perspective is efficient parameter initialization <a class="citation" href="#finn2017model">[Finn et al. 2017]</a>, classified as <em>gradient-based</em> meta-learning. Here, we focus on a family of algorithms encompassing the second perspective which started with Model-Agnostic Meta-Learning <em>MAML</em> <a class="citation" href="#finn2017model">[Finn et al. 2017]</a>. A crucial feature of this family of algorithms is that they introduce a specific mechanism to favor transfer between tasks, by looking for initial policy parameters that are close enough to the manifold of optimal policy parameters over all tasks.</p>
 
-<p>Actually, though in principle <em>MRL</em> is more meant to address several tasks than several goals in the same tasks, in practice empirical studies often address the same benchmarks which are multigoal rather than multitask <a class="citation" href="#finn2017model"> [14,15,10]</a>. Only a few papers truly transfer knowledge from one task to another <a class="citation" href="#zhao2017tensor"> [16,9,17]</a>, but at least the latter two do not classify themselves as performing <em>MRL</em>.</p>
+<p>Actually, though in principle <em>MRL</em> is more meant to address several tasks than several goals in the same tasks, in practice empirical studies often address the same benchmarks which are multigoal rather than multitask <a class="citation" href="#finn2017model">[Finn et al. 2017; Rothfuss et al. 2018; Rakelly et al. 2019]</a>. Only a few papers truly transfer knowledge from one task to another <a class="citation" href="#zhao2017tensor">[Zhao et al. 2017; Colas et al. 2019; Fournier et al. 2019]</a>, but at least the latter two do not classify themselves as performing <em>MRL</em>.</p>
 
 <p>The common practice in <em>MTL</em> consists in sampling from all target tasks, which limits its applicability to the open-ended learning context, where some target tasks may not be known in advance.
 Besides, transfer between tasks in <em>MTL</em>, or rather between goals, usually relies on the generalization capability of the underlying function approximator, without any specific mechanism to improve it, resulting in potential brittleness when this approximator is not appropriate.
@@ -133,7 +121,7 @@ To ensure good transfer to these unseen tasks, the approach in <em>MAML</em> con
 <!--- End Introduction -->
 
 <!--- Gradient computation -->
-<p>In this section we compare the computation of gradients in <em>MAML</em> and the \mtl algorithm we used. At first glance, the differences are the following:</p>
+<p>In this part of the blog post, we compare the computation of gradients in <em>MAML</em> and the \mtl algorithm we used. At first glance, the differences are the following:</p>
 
 <ul>
   <li>
@@ -167,7 +155,7 @@ To ensure good transfer to these unseen tasks, the approach in <em>MAML</em> con
 
 \[\theta \leftarrow \theta - \beta g_{MAML},\]
 
-<p>where \(g_{MAML}\) is computed in <a class="citation" href="#wang2016learning"> [13]</a>. Here we take back the same computations and add summation across all copies of task-specific parameters:</p>
+<p>where \(g_{MAML}\) is computed in <a class="citation" href="#wang2016learning">[Wang et al. 2016]</a>. Here we take back the same computations and add summation across all copies of task-specific parameters:</p>
 
 \[\begin{align*}
     g_{MAML} &amp;= \nabla_{\theta} \sum_{i=1}^N \mathcal{L} (\theta_k^i, \mathcal{D}^{val}_i) \\
@@ -212,12 +200,12 @@ The model parameters \(\theta_0\) are initialized randomly. In contrast to <em>M
 
 \[\theta \leftarrow \theta - \alpha g_{MTL}.\]
 
-<p align="center"><img src="/images/maml_fomaml.png" width="600" /></p>
+<p align="center"><img src="/blog/images/maml_fomaml.png" width="600" /></p>
 <p align="center">
-Fig.2-Diagram showing the path taken during the optimization step. $\mathcal{A}lg_i$ refers to the inner updates taken during task labeled $i$ (image taken from <a class="citation" href="#rajeswaran2019meta"> [18]</a>)
+Fig.2-Diagram showing the path taken during the optimization step. $\mathcal{A}lg_i$ refers to the inner updates taken during task labeled $i$ (image taken from <a class="citation" href="#rajeswaran2019meta">[Rajeswaran et al. 2019]</a>)
 </p>
 
-<p align="center"><img src="/images/mtl.png" width="600" /></p>
+<p align="center"><img src="/blog/images/mtl.png" width="600" /></p>
 <p align="center">
 Fig.3-Diagram showing the path taken by the used multi-task algorithm. Here the computation is done at each step contrarily to what is shown in Fig 2, where computation is performed in the meta-update step. $\mathcal{A}lg_i$ refers to the updates taken during task labeled $i$.
 </p>
@@ -244,39 +232,39 @@ g_{MTL} &amp; = &amp; \sum_{i=0}^{Nk-1} \nabla_{\psi_i} \mathcal{L} (\psi_i, \ma
 
 <!--- References -->
 
-<ol class="bibliography"><li><span id="doncieux2018open">[1]S. Doncieux, D. Filliat, Dı́az-Rodrı́guez Natalia, T. Hospedales, R. Duro, A. Coninx, D. M. Roijers, B. Girard, N. Perrin, and O. Sigaud, <i>Open-Ended Learning: a Conceptual Framework Based On
-                   Representational Redescription</i>, Frontiers in Robotics and AI <b>12</b>, (2018).</span></li>
-<li><span id="caruana97multitask">[2]R. Caruana, <i>Multitask Learning</i>, Machine Learning <b>28</b>, 41 (1997).</span></li>
-<li><span id="yang2014unified">[3]Y. Yang and T. M. Hospedales, <i>A Unified Perspective on Multi-Domain and Multi-Task
-                   Learning</i>, ArXiv Preprint ArXiv:1412.7489 (2014).</span></li>
-<li><span id="taylor2009transfer">[4]M. E. Taylor and P. Stone, <i>Transfer Learning for Reinforcement Learning Domains:
-                   A Survey</i>, Journal of Machine Learning Research <b>10</b>, 1633 (2009).</span></li>
-<li><span id="florensa2018automatic">[5]C. Florensa, D. Held, X. Geng, and P. Abbeel, <i>Automatic Goal Generation for Reinforcement Learning Agents</i>, in <i>International Conference on Machine Learning</i> (2018), pp. 1514–1523.</span></li>
-<li><span id="veeriah2018many">[6]V. Veeriah, J. Oh, and S. Singh, <i>Many-Goals Reinforcement Learning</i>, ArXiv Preprint ArXiv:1806.09605 (2018).</span></li>
-<li><span id="ghosh2018learning">[7]D. Ghosh, A. Gupta, and S. Levine, <i>Learning Actionable Representations With
-                   Goal-Conditioned Policies</i>, ArXiv Preprint ArXiv:1811.07819 (2018).</span></li>
-<li><span id="andrychowicz2017hindsight">[8]M. Andrychowicz, F. Wolski, A. Ray, J. Schneider, R. Fong, P. Welinder, B. McGrew, J. Tobin, P. Abbeel, and W. Zaremba, <i>Hindsight Experience Replay</i>, ArXiv Preprint ArXiv:1707.01495 (2017).</span></li>
-<li><span id="colas2019curious">[9]C. Colas, P.-Y. Oudeyer, O. Sigaud, P. Fournier, and M. Chetouani, <i>CURIOUS: Intrinsically Motivated Multi-Task, Multi-Goal Reinforcement Learning</i>, in <i>International Conference on Machine Learning (ICML)</i> (2019), pp. 1331–1340.</span></li>
-<li><span id="rakelly2019efficient">[10]K. Rakelly, A. Zhou, D. Quillen, C. Finn, and S. Levine, <i>Efficient off-Policy Meta-Reinforcement Learning via Probabilistic Context Variables</i>, ArXiv Preprint ArXiv:1903.08254 (2019).</span></li>
-<li><span id="weng2019metaRL">[11]L. Weng, <i>Meta Reinforcement Learning</i>, Lilianweng.github.io/Lil-Log (2019).</span></li>
-<li><span id="duan2016rl">[12]Y. Duan, J. Schulman, X. Chen, P. L. Bartlett, I. Sutskever, and P. Abbeel, <i>RL^2: Fast Reinforcement Learning via Slow
-                   Reinforcement Learning</i>, ArXiv Preprint ArXiv:1611.02779 (2016).</span></li>
-<li><span id="wang2016learning">[13]J. X. Wang, Z. Kurth-Nelson, D. Tirumala, H. Soyer, J. Z. Leibo, R. Munos, C. Blundell, D. Kumaran, and M. Botvinick, <i>Learning to Reinforcement Learn</i>, ArXiv Preprint ArXiv:1611.05763 (2016).</span></li>
-<li><span id="finn2017model">[14]C. Finn, P. Abbeel, and S. Levine, <i>Model-Agnostic Meta-Learning for Fast Adaptation Of
-                   Deep Networks</i>, in <i>Proceedings of the 34th International Conference On
-                   Machine Learning-Volume 70</i> (JMLR. org, 2017), pp. 1126–1135.</span></li>
-<li><span id="rothfuss2018promp">[15]J. Rothfuss, D. Lee, I. Clavera, T. Asfour, and P. Abbeel, <i>Promp: Proximal Meta-Policy Search</i>, ArXiv Preprint ArXiv:1810.06784 (2018).</span></li>
-<li><span id="zhao2017tensor">[16]C. Zhao, T. Hospedales, F. Stulp, and O. Sigaud, <i>Tensor-Based Knowledge Transfer across Skill Categories for Robot Control</i>, in <i>Proceedings IJCAI</i> (2017).</span></li>
-<li><span id="fournier2019clic_arxiv">[17]P. Fournier, O. Sigaud, M. Chetouani, and C. Colas, <i>CLIC: Curriculum Learning and Imitation for Feature Control in Non-Rewarding Environments</i>, ArXiv Preprint ArXiv:1901.09720 (2019).</span></li>
-<li><span id="rajeswaran2019meta">[18]A. Rajeswaran, C. Finn, S. Kakade, and S. Levine, <i>Meta-Learning with Implicit Gradients</i>, ArXiv Preprint ArXiv:1909.04630 (2019).</span></li></ol>
+<ol class="bibliography"><li><span id="doncieux2018open"><span style="font-variant: small-caps">Doncieux, S., Filliat, D., Dı́az-Rodrı́guez Natalia, et al.</span> 2018. Open-ended Learning: a Conceptual Framework based on
+                   Representational Redescription. <i>Frontiers in Robotics and AI</i> <i>12</i>.</span></li>
+<li><span id="caruana97multitask"><span style="font-variant: small-caps">Caruana, R.</span> 1997. Multitask Learning. <i>Machine Learning</i> <i>28</i>, 1, 41–75.</span></li>
+<li><span id="yang2014unified"><span style="font-variant: small-caps">Yang, Y. and Hospedales, T.M.</span> 2014. A unified perspective on multi-domain and multi-task
+                   learning. <i>arXiv preprint arXiv:1412.7489</i>.</span></li>
+<li><span id="taylor2009transfer"><span style="font-variant: small-caps">Taylor, M.E. and Stone, P.</span> 2009. Transfer learning for reinforcement learning domains:
+                   A survey. <i>Journal of Machine Learning Research</i> <i>10</i>, Jul, 1633–1685.</span></li>
+<li><span id="florensa2018automatic"><span style="font-variant: small-caps">Florensa, C., Held, D., Geng, X., and Abbeel, P.</span> 2018. Automatic Goal Generation for Reinforcement Learning Agents. <i>International Conference on Machine Learning</i>, 1514–1523.</span></li>
+<li><span id="veeriah2018many"><span style="font-variant: small-caps">Veeriah, V., Oh, J., and Singh, S.</span> 2018. Many-Goals Reinforcement Learning. <i>arXiv preprint arXiv:1806.09605</i>.</span></li>
+<li><span id="ghosh2018learning"><span style="font-variant: small-caps">Ghosh, D., Gupta, A., and Levine, S.</span> 2018. Learning Actionable Representations with
+                   Goal-Conditioned Policies. <i>arXiv preprint arXiv:1811.07819</i>.</span></li>
+<li><span id="andrychowicz2017hindsight"><span style="font-variant: small-caps">Andrychowicz, M., Wolski, F., Ray, A., et al.</span> 2017. Hindsight Experience Replay. <i>arXiv preprint arXiv:1707.01495</i>.</span></li>
+<li><span id="colas2019curious"><span style="font-variant: small-caps">Colas, C., Oudeyer, P.-Y., Sigaud, O., Fournier, P., and Chetouani, M.</span> 2019. CURIOUS: Intrinsically Motivated Multi-Task, Multi-Goal Reinforcement Learning. <i>International Conference on Machine Learning (ICML)</i>, 1331–1340.</span></li>
+<li><span id="rakelly2019efficient"><span style="font-variant: small-caps">Rakelly, K., Zhou, A., Quillen, D., Finn, C., and Levine, S.</span> 2019. Efficient off-policy meta-reinforcement learning via probabilistic context variables. <i>arXiv preprint arXiv:1903.08254</i>.</span></li>
+<li><span id="weng2019metaRL"><span style="font-variant: small-caps">Weng, L.</span> 2019. Meta Reinforcement Learning. <i>lilianweng.github.io/lil-log</i>.</span></li>
+<li><span id="duan2016rl"><span style="font-variant: small-caps">Duan, Y., Schulman, J., Chen, X., Bartlett, P.L., Sutskever, I., and Abbeel, P.</span> 2016. RL^2: Fast reinforcement learning via slow
+                   reinforcement learning. <i>arXiv preprint arXiv:1611.02779</i>.</span></li>
+<li><span id="wang2016learning"><span style="font-variant: small-caps">Wang, J.X., Kurth-Nelson, Z., Tirumala, D., et al.</span> 2016. Learning to reinforcement learn. <i>arXiv preprint arXiv:1611.05763</i>.</span></li>
+<li><span id="finn2017model"><span style="font-variant: small-caps">Finn, C., Abbeel, P., and Levine, S.</span> 2017. Model-agnostic meta-learning for fast adaptation of
+                   deep networks. <i>Proceedings of the 34th International Conference on
+                   Machine Learning-Volume 70</i>, JMLR. org, 1126–1135.</span></li>
+<li><span id="rothfuss2018promp"><span style="font-variant: small-caps">Rothfuss, J., Lee, D., Clavera, I., Asfour, T., and Abbeel, P.</span> 2018. Promp: Proximal meta-policy search. <i>arXiv preprint arXiv:1810.06784</i>.</span></li>
+<li><span id="zhao2017tensor"><span style="font-variant: small-caps">Zhao, C., Hospedales, T., Stulp, F., and Sigaud, O.</span> 2017. Tensor-based knowledge transfer across skill categories for robot control. <i>Proceedings IJCAI</i>.</span></li>
+<li><span id="fournier2019clic_arxiv"><span style="font-variant: small-caps">Fournier, P., Sigaud, O., Chetouani, M., and Colas, C.</span> 2019. CLIC: Curriculum Learning and Imitation for feature Control in non-rewarding environments. <i>arXiv preprint arXiv:1901.09720</i>.</span></li>
+<li><span id="rajeswaran2019meta"><span style="font-variant: small-caps">Rajeswaran, A., Finn, C., Kakade, S., and Levine, S.</span> 2019. Meta-Learning with Implicit Gradients. <i>arXiv preprint arXiv:1909.04630</i>.</span></li></ol>
 
     </div><!-- .post-content -->
     <div class="post-share">
       <span>Share:</span>
       <a target="_blank"
-        href="https://twitter.com/intent/tweet?text=Comparing%20Multi-task%20and%20Meta%20Reinforcement%20Learning&amp;url=http://localhost:4000/webpage/gargaml" rel="noopener">Twitter</a>
+        href="https://twitter.com/intent/tweet?text=Comparing%20Multi-task%20and%20Meta%20Reinforcement%20Learning&amp;url=http://localhost:4000/blog/gargaml" rel="noopener">Twitter</a>
       <a target="_blank"
-        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/webpage/gargaml&amp;t=Comparing%20Multi-task%20and%20Meta%20Reinforcement%20Learning" rel="noopener">Facebook</a>
+        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/blog/gargaml&amp;t=Comparing%20Multi-task%20and%20Meta%20Reinforcement%20Learning" rel="noopener">Facebook</a>
     </div><!-- .share-post -->
     <div class="author-box">
       
@@ -362,8 +350,8 @@ g_{MTL} &amp; = &amp; \sum_{i=0}^{Nk-1} \nabla_{\psi_i} \mathcal{L} (\psi_i, \ma
   ga('send', 'pageview');
 </script>
   
-  <script src="/webpage/assets/js/plugins.js"></script>
-  <script src="/webpage/assets/js/custom.js"></script>
+  <script src="/blog/assets/js/plugins.js"></script>
+  <script src="/blog/assets/js/custom.js"></script>
 
 </body>
 </html>

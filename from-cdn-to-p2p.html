@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>From CDN to P2P: a Brief Dataset Analysis for Video Streaming</title>
   <meta name="description" content="A brief study of two different video streaming techniques.">
-  <link rel="canonical" href="http://localhost:4000/webpage/from-cdn-to-p2p">
+  <link rel="canonical" href="http://localhost:4000/blog/from-cdn-to-p2p">
   <link rel="alternate" type="application/rss+xml" title="Ahmed Akakzia Feed"
-    href="http://localhost:4000/webpage/feed.xml">
+    href="http://localhost:4000/blog/feed.xml">
   
-  <link rel="shortcut icon" href="/webpage/images/tabicon.png" type="image/png" />
+  <link rel="shortcut icon" href="/blog/images/tabicon.png" type="image/png" />
   
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i%7CNoto+Serif:400,400i,700,700i&display=swap" rel="stylesheet">
-  <link href="/webpage/assets/css/style.css" rel="stylesheet">
+  <link href="/blog/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -21,7 +21,7 @@
     <div class="inner">
       <header class="site-header">
   
-  <p class="site-title"><a class="logo-text" href="/webpage/">Ahmed Akakzia</a></p>
+  <p class="site-title"><a class="logo-text" href="/blog/">Ahmed Akakzia</a></p>
   
   <nav class="site-navigation">
     <div class="site-navigation-wrap">
@@ -31,37 +31,25 @@
         
         
         <li class="menu-item ">
-          <a class="" href="/">Home</a>
+          <a class="" href="/blog/">Scientific Lab</a>
         </li>
         
         
         
         <li class="menu-item ">
-          <a class="" href="/about/">About</a>
+          <a class="" href="/blog/publications/">Publications</a>
         </li>
         
         
         
         <li class="menu-item ">
-          <a class="" href="/publications/">Publications</a>
+          <a class="" href="/blog/about/">About</a>
         </li>
         
         
         
         <li class="menu-item ">
-          <a class="" href="/scientific/">Science Lab</a>
-        </li>
-        
-        
-        
-        <li class="menu-item ">
-          <a class="" href="/style-guide/">Style Guide</a>
-        </li>
-        
-        
-        
-        <li class="menu-item ">
-          <a class="" href="/contact/">Contact</a>
+          <a class="" href="/blog/contact/">Contact</a>
         </li>
         
       </ul><!-- .menu -->
@@ -84,7 +72,7 @@
       </div><!-- .post-meta -->
       
       <figure class="post-thumbnail image-card width-wide">
-        <img src="/webpage/images/video_streaming.png" alt="From CDN to P2P: a Brief Dataset Analysis for Video Streaming">
+        <img src="/blog/images/video_streaming.png" alt="From CDN to P2P: a Brief Dataset Analysis for Video Streaming">
       </figure><!-- .post-thumbnail -->
       
     </header><!-- .post-header -->
@@ -557,7 +545,7 @@ Name: isp, dtype: int64
        dtype=object))
 </code></pre></div></div>
 
-<p><img src="/images/p2p_video_streaming_25_1.png" alt="png" /></p>
+<p><img src="/blog/images/p2p_video_streaming_25_1.png" alt="png" /></p>
 
 <p>It is clear from the left barplot that the different internet service providers do not act the same way in the p2p. For instance, rougly 80% of the “Datch Telecam” users are not connected but are registered in the p2p. In contrast, only a neglectable number of users using “BTP” are registered but not connected. <br /><br />
 On the other hand, even if the variance is not the same, also browsers do not behave in the same way. Some browsers, more than others, allow users to be registered in the p2p and yet not connected.<br /><br />
@@ -601,27 +589,27 @@ The fact that a user is not connected but is part of the p2p creates an issue th
     <span class="n">plot_p2p</span><span class="p">(</span><span class="n">data_preprocessed</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">st</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p><img src="/images/p2p_video_streaming_28_0.png" alt="png" /></p>
+<p><img src="/blog/images/p2p_video_streaming_28_0.png" alt="png" /></p>
 
-<p><img src="/images/p2p_video_streaming_28_1.png" alt="png" /></p>
+<p><img src="/blog/images/p2p_video_streaming_28_1.png" alt="png" /></p>
 
-<p><img src="/images/p2p_video_streaming_28_2.png" alt="png" /></p>
+<p><img src="/blog/images/p2p_video_streaming_28_2.png" alt="png" /></p>
 
-<p><img src="/images/p2p_video_streaming_28_3.png" alt="png" /></p>
+<p><img src="/blog/images/p2p_video_streaming_28_3.png" alt="png" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
     <span class="n">plot_p2p</span><span class="p">(</span><span class="n">data_preprocessed</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">st</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p><img src="/images/p2p_video_streaming_29_0.png" alt="png" /></p>
+<p><img src="/blog/images/p2p_video_streaming_29_0.png" alt="png" /></p>
 
-<p><img src="/images/p2p_video_streaming_29_1.png" alt="png" /></p>
+<p><img src="/blog/images/p2p_video_streaming_29_1.png" alt="png" /></p>
 
-<p><img src="/images/p2p_video_streaming_29_2.png" alt="png" /></p>
+<p><img src="/blog/images/p2p_video_streaming_29_2.png" alt="png" /></p>
 
-<p><img src="/images/p2p_video_streaming_29_3.png" alt="png" /></p>
+<p><img src="/blog/images/p2p_video_streaming_29_3.png" alt="png" /></p>
 
-<p><img src="/images/p2p_video_streaming_29_4.png" alt="png" /></p>
+<p><img src="/blog/images/p2p_video_streaming_29_4.png" alt="png" /></p>
 
 <p>The previous 9 subplots, corresponding to the 9 streams present in the dataset, show that percentage of the amount of retrieval from p2p and cdn for each stream. The streams clearly do not behave the same way : for some, the proportion of retrieval from the p2p is comparable and even higher that the amount of retrieval from a cdn. However, for others (for instance stream 3 and 4), the retrieval of the stream from cdn is much more important than that of p2p. Only few users are sharing the stream in the p2p whereas all the others are getting it directly from the cdn.</p>
 
@@ -642,9 +630,9 @@ I believe that if I had more time, I could have done some other things with this
     <div class="post-share">
       <span>Share:</span>
       <a target="_blank"
-        href="https://twitter.com/intent/tweet?text=From%20CDN%20to%20P2P:%20a%20Brief%20Dataset%20Analysis%20for%20Video%20Streaming&amp;url=http://localhost:4000/webpage/from-cdn-to-p2p" rel="noopener">Twitter</a>
+        href="https://twitter.com/intent/tweet?text=From%20CDN%20to%20P2P:%20a%20Brief%20Dataset%20Analysis%20for%20Video%20Streaming&amp;url=http://localhost:4000/blog/from-cdn-to-p2p" rel="noopener">Twitter</a>
       <a target="_blank"
-        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/webpage/from-cdn-to-p2p&amp;t=From%20CDN%20to%20P2P:%20a%20Brief%20Dataset%20Analysis%20for%20Video%20Streaming" rel="noopener">Facebook</a>
+        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/blog/from-cdn-to-p2p&amp;t=From%20CDN%20to%20P2P:%20a%20Brief%20Dataset%20Analysis%20for%20Video%20Streaming" rel="noopener">Facebook</a>
     </div><!-- .share-post -->
     <div class="author-box">
       
@@ -730,8 +718,8 @@ I believe that if I had more time, I could have done some other things with this
   ga('send', 'pageview');
 </script>
   
-  <script src="/webpage/assets/js/plugins.js"></script>
-  <script src="/webpage/assets/js/custom.js"></script>
+  <script src="/blog/assets/js/plugins.js"></script>
+  <script src="/blog/assets/js/custom.js"></script>
 
 </body>
 </html>

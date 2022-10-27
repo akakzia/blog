@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RAMP on Predictive Maintenance for Aircraft Engines</title>
   <meta name="description" content="A brief study of two different video streaming techniques.">
-  <link rel="canonical" href="http://localhost:4000/webpage/aircraft-starting-kit">
+  <link rel="canonical" href="http://localhost:4000/blog/aircraft-starting-kit">
   <link rel="alternate" type="application/rss+xml" title="Ahmed Akakzia Feed"
-    href="http://localhost:4000/webpage/feed.xml">
+    href="http://localhost:4000/blog/feed.xml">
   
-  <link rel="shortcut icon" href="/webpage/images/tabicon.png" type="image/png" />
+  <link rel="shortcut icon" href="/blog/images/tabicon.png" type="image/png" />
   
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i%7CNoto+Serif:400,400i,700,700i&display=swap" rel="stylesheet">
-  <link href="/webpage/assets/css/style.css" rel="stylesheet">
+  <link href="/blog/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -21,7 +21,7 @@
     <div class="inner">
       <header class="site-header">
   
-  <p class="site-title"><a class="logo-text" href="/webpage/">Ahmed Akakzia</a></p>
+  <p class="site-title"><a class="logo-text" href="/blog/">Ahmed Akakzia</a></p>
   
   <nav class="site-navigation">
     <div class="site-navigation-wrap">
@@ -31,37 +31,25 @@
         
         
         <li class="menu-item ">
-          <a class="" href="/">Home</a>
+          <a class="" href="/blog/">Scientific Lab</a>
         </li>
         
         
         
         <li class="menu-item ">
-          <a class="" href="/about/">About</a>
+          <a class="" href="/blog/publications/">Publications</a>
         </li>
         
         
         
         <li class="menu-item ">
-          <a class="" href="/publications/">Publications</a>
+          <a class="" href="/blog/about/">About</a>
         </li>
         
         
         
         <li class="menu-item ">
-          <a class="" href="/scientific/">Science Lab</a>
-        </li>
-        
-        
-        
-        <li class="menu-item ">
-          <a class="" href="/style-guide/">Style Guide</a>
-        </li>
-        
-        
-        
-        <li class="menu-item ">
-          <a class="" href="/contact/">Contact</a>
+          <a class="" href="/blog/contact/">Contact</a>
         </li>
         
       </ul><!-- .menu -->
@@ -84,7 +72,7 @@
       </div><!-- .post-meta -->
       
       <figure class="post-thumbnail image-card width-wide">
-        <img src="/webpage/images/aircraft.png" alt="RAMP on Predictive Maintenance for Aircraft Engines">
+        <img src="/blog/images/aircraft.png" alt="RAMP on Predictive Maintenance for Aircraft Engines">
       </figure><!-- .post-thumbnail -->
       
     </header><!-- .post-header -->
@@ -824,7 +812,7 @@ memory usage: 9.0 MB
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5, 1.0, 'Distribution of engines with respect to their failure cycles')
 </code></pre></div></div>
 
-<p><img src="/images/aircraft_starting_kit_30_1.png" alt="png" /></p>
+<p><img src="/blog/images/aircraft_starting_kit_30_1.png" alt="png" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cycles_per_engine</span><span class="p">.</span><span class="n">Cycles</span><span class="p">).</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
 </code></pre></div></div>
@@ -850,7 +838,7 @@ Name: 0.75, dtype: float64
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Text(0.5, 1.0, 'Number of observation per class ')
 </code></pre></div></div>
 
-<p><img src="/images/aircraft_starting_kit_35_1.png" alt="png" /></p>
+<p><img src="/blog/images/aircraft_starting_kit_35_1.png" alt="png" /></p>
 
 <p>$\rightarrow$ <b>We notice that : The distribution between classes seems to be imbalanced.</b></p>
 
@@ -862,7 +850,7 @@ Name: 0.75, dtype: float64
 <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><img src="/images/aircraft_starting_kit_38_0.png" alt="png" /></p>
+<p><img src="/blog/images/aircraft_starting_kit_38_0.png" alt="png" /></p>
 
 <h3 id="feature-distributions-">Feature distributions :</h3>
 
@@ -874,7 +862,7 @@ Name: 0.75, dtype: float64
 <span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">add_legend</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><img src="/images/aircraft_starting_kit_40_0.png" alt="png" /></p>
+<p><img src="/blog/images/aircraft_starting_kit_40_0.png" alt="png" /></p>
 
 <p>$\rightarrow$ <b>Here we used a  pairplot to see the bivariate relation between each pair of features and distribution of each feature. We notice that:</b></p>
 <ul>
@@ -969,11 +957,11 @@ Name: 0.75, dtype: float64
 **************
 </code></pre></div></div>
 
-<p><img src="/images/aircraft_starting_kit_45_1.png" alt="png" /></p>
+<p><img src="/blog/images/aircraft_starting_kit_45_1.png" alt="png" /></p>
 
-<p><img src="/images/aircraft_starting_kit_45_2.png" alt="png" /></p>
+<p><img src="/blog/images/aircraft_starting_kit_45_2.png" alt="png" /></p>
 
-<p><img src="/images/aircraft_starting_kit_45_3.png" alt="png" /></p>
+<p><img src="/blog/images/aircraft_starting_kit_45_3.png" alt="png" /></p>
 
 <p>$\rightarrow$ <b>It is clear that the behaviour of sensors measurements differ from one class to another and especially when the number of cycles gets close to the failure point. These sensors measurements should then have been more explored in order to extract other valuable and informative information.</b></p>
 
@@ -985,7 +973,7 @@ Name: 0.75, dtype: float64
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fec555c0908&gt;
 </code></pre></div></div>
 
-<p><img src="/images/aircraft_starting_kit_48_1.png" alt="png" /></p>
+<p><img src="/blog/images/aircraft_starting_kit_48_1.png" alt="png" /></p>
 
 <p>$\rightarrow$ <b>Even though our features’ variances are quite low,these violinplots confirm the previous remark. </b></p>
 
@@ -1292,7 +1280,7 @@ weighted avg       0.78      0.80      0.79     29692
 <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
-<p><img src="/images/aircraft_starting_kit_67_0.png" alt="png" /></p>
+<p><img src="/blog/images/aircraft_starting_kit_67_0.png" alt="png" /></p>
 
 <p>$\rightarrow$<strong>High accuracy does not mean a performant model, true and false positives should be taken into cosideration.The above results seem to be good but in reality the classes are imbalanced and have different order of importance (urgency). That’s why we defined our proper metrics that respond to the problem’s needs (weighted metrics). </strong></p>
 
@@ -1379,7 +1367,7 @@ Mixed :  1.2551459167920087
 <span class="n">plot_classes_proba</span><span class="p">(</span><span class="n">eng_id</span> <span class="p">,</span> <span class="n">X_test</span> <span class="p">,</span> <span class="n">y_test</span> <span class="p">,</span> <span class="n">y_pred_proba</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p><img src="/images/aircraft_starting_kit_73_0.png" alt="png" /></p>
+<p><img src="/blog/images/aircraft_starting_kit_73_0.png" alt="png" /></p>
 
 <p>$\rightarrow$ <b>In the figure above, we clearly notice that we have a problem of a late alarm. In fact, when the true value of the class is 1, our model assigns the higher probability to the class 2 (the segment between the red and green vertical lines). Therefore, we are predicting that our system is confident while it has in reality less than 30 cycles until failure. This can cause an unexpected damage to the aircraft’s engine. </b><br />
 $\rightarrow$ <b>We can also be in the case of an early alarm. For example, an engine is a confident system while our model predicts it needs an urgent maintenance. This may involve a useless maintenance and a significant economic burden for the company.</b></p>
@@ -1459,9 +1447,9 @@ $\rightarrow$ <b>We can also be in the case of an early alarm. For example, an e
     <div class="post-share">
       <span>Share:</span>
       <a target="_blank"
-        href="https://twitter.com/intent/tweet?text=RAMP%20on%20Predictive%20Maintenance%20for%20Aircraft%20Engines&amp;url=http://localhost:4000/webpage/aircraft-starting-kit" rel="noopener">Twitter</a>
+        href="https://twitter.com/intent/tweet?text=RAMP%20on%20Predictive%20Maintenance%20for%20Aircraft%20Engines&amp;url=http://localhost:4000/blog/aircraft-starting-kit" rel="noopener">Twitter</a>
       <a target="_blank"
-        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/webpage/aircraft-starting-kit&amp;t=RAMP%20on%20Predictive%20Maintenance%20for%20Aircraft%20Engines" rel="noopener">Facebook</a>
+        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/blog/aircraft-starting-kit&amp;t=RAMP%20on%20Predictive%20Maintenance%20for%20Aircraft%20Engines" rel="noopener">Facebook</a>
     </div><!-- .share-post -->
     <div class="author-box">
       
@@ -1547,8 +1535,8 @@ $\rightarrow$ <b>We can also be in the case of an early alarm. For example, an e
   ga('send', 'pageview');
 </script>
   
-  <script src="/webpage/assets/js/plugins.js"></script>
-  <script src="/webpage/assets/js/custom.js"></script>
+  <script src="/blog/assets/js/plugins.js"></script>
+  <script src="/blog/assets/js/custom.js"></script>
 
 </body>
 </html>

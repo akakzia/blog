@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>When Graph Neural Networks Meet Reinforcement Learning</title>
   <meta name="description" content="An overview on Graph Neural Networks in Reinforcement Learning.">
-  <link rel="canonical" href="http://localhost:4000/webpage/graph-neural-networks">
+  <link rel="canonical" href="http://localhost:4000/blog/graph-neural-networks">
   <link rel="alternate" type="application/rss+xml" title="Ahmed Akakzia Feed"
-    href="http://localhost:4000/webpage/feed.xml">
+    href="http://localhost:4000/blog/feed.xml">
   
-  <link rel="shortcut icon" href="/webpage/images/tabicon.png" type="image/png" />
+  <link rel="shortcut icon" href="/blog/images/tabicon.png" type="image/png" />
   
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i%7CNoto+Serif:400,400i,700,700i&display=swap" rel="stylesheet">
-  <link href="/webpage/assets/css/style.css" rel="stylesheet">
+  <link href="/blog/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -21,7 +21,7 @@
     <div class="inner">
       <header class="site-header">
   
-  <p class="site-title"><a class="logo-text" href="/webpage/">Ahmed Akakzia</a></p>
+  <p class="site-title"><a class="logo-text" href="/blog/">Ahmed Akakzia</a></p>
   
   <nav class="site-navigation">
     <div class="site-navigation-wrap">
@@ -31,37 +31,25 @@
         
         
         <li class="menu-item ">
-          <a class="" href="/">Home</a>
+          <a class="" href="/blog/">Scientific Lab</a>
         </li>
         
         
         
         <li class="menu-item ">
-          <a class="" href="/about/">About</a>
+          <a class="" href="/blog/publications/">Publications</a>
         </li>
         
         
         
         <li class="menu-item ">
-          <a class="" href="/publications/">Publications</a>
+          <a class="" href="/blog/about/">About</a>
         </li>
         
         
         
         <li class="menu-item ">
-          <a class="" href="/scientific/">Science Lab</a>
-        </li>
-        
-        
-        
-        <li class="menu-item ">
-          <a class="" href="/style-guide/">Style Guide</a>
-        </li>
-        
-        
-        
-        <li class="menu-item ">
-          <a class="" href="/contact/">Contact</a>
+          <a class="" href="/blog/contact/">Contact</a>
         </li>
         
       </ul><!-- .menu -->
@@ -84,7 +72,7 @@
       </div><!-- .post-meta -->
       
       <figure class="post-thumbnail image-card width-wide">
-        <img src="/webpage/images/graphs.png" alt="When Graph Neural Networks Meet Reinforcement Learning">
+        <img src="/blog/images/graphs.png" alt="When Graph Neural Networks Meet Reinforcement Learning">
       </figure><!-- .post-thumbnail -->
       
     </header><!-- .post-header -->
@@ -97,15 +85,15 @@
 
 <p>Combining primitive skills and building upon them to solve harder tasks is a key challenge within artificial intelligence. In the context of <em>goal-conditioned agents</em>, transfer and adaptibility seem to depend on two key features: <em>the goal space design</em>, and <em>the policy architecture</em>. On the one hand, the goal representation—whether it is learned or predefined—should encapsulate an adequate structure that defines a specific topology in the goal space.</p>
 
-<p>On the other hand, since the behavior of artificial agents does not only depend on how they represent their goals, but also on how they take actions, we investigate <em>Graph Neural Networks</em> (GNNs) as technical tools to model policies in autotelic agents. This choice is also motivated by developmental approaches, as research in psychology shows that humans perceive their world in a structured fashion <a class="citation" href="#winston1970learning"> [1,2,3,4,5,6,7,8,9]</a>.</p>
+<p>On the other hand, since the behavior of artificial agents does not only depend on how they represent their goals, but also on how they take actions, we investigate <em>Graph Neural Networks</em> (GNNs) as technical tools to model policies in autotelic agents. This choice is also motivated by developmental approaches, as research in psychology shows that humans perceive their world in a structured fashion <a class="citation" href="#winston1970learning">[Winston 1970; Palmer 1975; Navon 1977; Markman 1989; Kemp and Tenenbaum 2008; Tenenbaum et al. 2011; Battaglia et al. 2016; Battaglia et al. 2018; Godfrey-Smith 2021]</a>.</p>
 
 <p>This blog post is organized as follows. First, we start by introducing GNNs as technical tools to endow artificial agents with relational inductive biases. Then, we present an overview on the use of GNNs in the field of RL. Finally, we highlight several limitations of such combination.</p>
 
 <h2 id="graph-neural-networks">Graph Neural Networks</h2>
 
-<p>Recently, deep learning methods have been used to solve a significant amount of problems in different domains. Ranging from image classification <a class="citation" href="#redmon2016you"> [10,11]</a> and video processing <a class="citation" href="#zhang2016deep"> [12]</a> to speech recognition <a class="citation" href="#hinton2012deep"> [13]</a> and neural machine translation <a class="citation" href="#luong2015effective"> [14,15]</a>, these methods use parameterized neural networks as building blocks. Consequently, such methods are usually end-to-end, requiring few to no assumptions. They feed their networks with raw streams of data which are usually represented in the Euclidean Space. However, many applications rather represent data in non-Euclidean domains and use graphs with complex relationships and inter-dependencies. Standard usage of deep learning techniques usually struggle with this type of unstructured representations.</p>
+<p>Recently, deep learning methods have been used to solve a significant amount of problems in different domains. Ranging from image classification <a class="citation" href="#redmon2016you">[Redmon et al. 2016; Ren et al. 2015]</a> and video processing <a class="citation" href="#zhang2016deep">[Zhang et al. 2016]</a> to speech recognition <a class="citation" href="#hinton2012deep">[Hinton et al. 2012]</a> and neural machine translation <a class="citation" href="#luong2015effective">[Luong et al. 2015; Wu et al. 2017]</a>, these methods use parameterized neural networks as building blocks. Consequently, such methods are usually end-to-end, requiring few to no assumptions. They feed their networks with raw streams of data which are usually represented in the Euclidean Space. However, many applications rather represent data in non-Euclidean domains and use graphs with complex relationships and inter-dependencies. Standard usage of deep learning techniques usually struggle with this type of unstructured representations.</p>
 
-<p>Interestingly, research has been interested in leveraging graph-based information using neural networks. Namely, <em>Graph Neural Networks</em> (GNNs) were proposed as computational frameworks that handle unstructured data using neural networks that they share between nodes and edges <a class="citation" href="#wang2016learning"> [16,7,17,18,19,20,8,21,22,23,24,25,26,27]</a>. Although these methods are all based on the same idea, they use different techniques depending on how they handle computations within their GNNs’ definition. There exist several surveys that propose different taxonomies for GNNs-based methods <a class="citation" href="#bronstein2017geometric"> [28,29,8,30,31]</a>. In this section, rather than presenting an exhaustive survey of GNNs, our goal is to define the building blocks including definitions and computational schemes. Besides, we focus on applications in RL and present a short overview of standard methods.</p>
+<p>Interestingly, research has been interested in leveraging graph-based information using neural networks. Namely, <em>Graph Neural Networks</em> (GNNs) were proposed as computational frameworks that handle unstructured data using neural networks that they share between nodes and edges <a class="citation" href="#wang2016learning">[Wang et al. 2016; Battaglia et al. 2016; Santoro et al. 2017; Zaheer et al. 2017; Hamrick et al. 2017; Sanchez-Gonzalez et al. 2018; Battaglia et al. 2018; Zambaldi et al. 2018; Wang et al. 2018; Bapst et al. 2019; Li et al. 2019; Colas et al. 2020; Akakzia et al. 2021; Akakzia and Sigaud 2022]</a>. Although these methods are all based on the same idea, they use different techniques depending on how they handle computations within their GNNs’ definition. There exist several surveys that propose different taxonomies for GNNs-based methods <a class="citation" href="#bronstein2017geometric">[Bronstein et al. 2017; Hamilton et al. 2017; Battaglia et al. 2018; Lee et al. 2018; Wu et al. 2020]</a>. In this blog post, rather than presenting an exhaustive survey of GNNs, our goal is to define the building blocks including definitions and computational schemes. Besides, we focus on applications in RL and present a short overview of standard methods.</p>
 
 <h3 id="relational-inductive-bias-with-graph-neural-networks">Relational Inductive Bias with Graph Neural Networks</h3>
 
@@ -121,17 +109,17 @@
 
 <h4 id="graph-input">Graph Input</h4>
 
-<p>The input of a graph corresponds to the parsed input features of all its nodes, all its edges and some other global features characterizing the whole system. Active lines of research that are orthogonal to our work are exploring methods that enable the extraction of such parsed features from raw sensory data <a class="citation" href="#watters2017visual"> [32,33,34,35]</a>. To simplify our study, we suppose the existence of a <em>predefined feature extractor</em> that automatically generates input values for each node and edge. For simplicity, we respectively denote the input features of node \(i\), edge \(i \rightarrow j\) and global features by \(v_i\), \(e_{ij}\) and \(u\).</p>
+<p>The input of a graph corresponds to the parsed input features of all its nodes, all its edges and some other global features characterizing the whole system. Active lines of research that are orthogonal to our work are exploring methods that enable the extraction of such parsed features from raw sensory data <a class="citation" href="#watters2017visual">[Watters et al. 2017; Van Steenkiste et al. 2018; Li et al. 2018; Kipf et al. 2018]</a>. To simplify our study, we suppose the existence of a <em>predefined feature extractor</em> that automatically generates input values for each node and edge. For simplicity, we respectively denote the input features of node \(i\), edge \(i \rightarrow j\) and global features by \(v_i\), \(e_{ij}\) and \(u\).</p>
 
 <h4 id="graph-output">Graph Output</h4>
 
 <p>Depending on the graph structure and the task at hand, the output of the graph can focus on different graph levels. If the functions used to produce this output are modeled by neural networks, then we speak about GNNs.</p>
 
-<p><strong>Node-level.</strong> This level focuses on the nodes of the graph. In this scenario, input features including node, edge and global features are used to produce a new embedding for each node. This can be used to perform regression and classification at the level of nodes and learn about the physical dynamics of each object <a class="citation" href="#battaglia2016interaction"> [7,36,22,20]</a>.</p>
+<p><strong>Node-level.</strong> This level focuses on the nodes of the graph. In this scenario, input features including node, edge and global features are used to produce a new embedding for each node. This can be used to perform regression and classification at the level of nodes and learn about the physical dynamics of each object <a class="citation" href="#battaglia2016interaction">[Battaglia et al. 2016; Chang et al. 2016; Wang et al. 2018; Sanchez-Gonzalez et al. 2018]</a>.</p>
 
-<p><strong>Edge-level.</strong> This level focuses on the edges of the graph. The output of the computational scheme in this case are the updated features of each node after propagating the information between all the nodes. For instance, it can be used to make decisions about interactions among the different objects <a class="citation" href="#kipf2018neural"> [35,37]</a>.</p>
+<p><strong>Edge-level.</strong> This level focuses on the edges of the graph. The output of the computational scheme in this case are the updated features of each node after propagating the information between all the nodes. For instance, it can be used to make decisions about interactions among the different objects <a class="citation" href="#kipf2018neural">[Kipf et al. 2018; Hamrick et al. 2018]</a>.</p>
 
-<p><strong>Graph-level.</strong> This level focuses on the entire graph. The output corresponds to a global embedding computed after propagating the information between all nodes of the graph. It can be used by embodied agents to produce actions in multi-object scenarios <a class="citation" href="#akakzia2021grounding"> [26,27]</a>, to answer questions about a visual scene <a class="citation" href="#santoro2017simple"> [17]</a> or to extract the global properties molecules in chemistry <a class="citation" href="#gilmer2017neural"> [38]</a>.</p>
+<p><strong>Graph-level.</strong> This level focuses on the entire graph. The output corresponds to a global embedding computed after propagating the information between all nodes of the graph. It can be used by embodied agents to produce actions in multi-object scenarios <a class="citation" href="#akakzia2021grounding">[Akakzia et al. 2021; Akakzia and Sigaud 2022]</a>, to answer questions about a visual scene <a class="citation" href="#santoro2017simple">[Santoro et al. 2017]</a> or to extract the global properties molecules in chemistry <a class="citation" href="#gilmer2017neural">[Gilmer et al. 2017]</a>.</p>
 
 <h4 id="graph-computation">Graph Computation</h4>
 
@@ -151,93 +139,93 @@
 
 \[o~=~NN_{readout}(Agg_{i \in graph}(v'_{i})).\]
 
-<p>The computational steps we described above can be used in some other order. For example, one can first perform the node update using the input features of edges, then perform the edge updates using the updated nodes features. This choice usually depends on the domain and task at hand. Besides, our descriptions above are categorized within the family of <em>convolutional GNNs</em> <a class="citation" href="#bruna2013spectral"> [39,40,41,42,43,38,27]</a>, which generalize the operation of convolution from grid data to graph data by pooling features of neighbors when updating each node. There exist other categories of GNNs, such as <em>graph auto-encoders</em> <a class="citation" href="#cao2016deep"> [44,45,46,47,34]</a>, <em>spatio-temporal GNNs</em> <a class="citation" href="#yu2017spatio"> [48,49,50,51]</a> and <em>recurrent GNNs</em> <a class="citation" href="#scarselli2005graph"> [52,53,54,55]</a>. Finally, the aggregation module used to perform node-wise pooling can be either some predefined permutation-invariant function such as sum, max or mean, or a more sophisticated self-attention-based function that learns attention weights for each node <a class="citation" href="#velivckovic2017graph"> [56]</a>.</p>
+<p>The computational steps we described above can be used in some other order. For example, one can first perform the node update using the input features of edges, then perform the edge updates using the updated nodes features. This choice usually depends on the domain and task at hand. Besides, our descriptions above are categorized within the family of <em>convolutional GNNs</em> <a class="citation" href="#bruna2013spectral">[Bruna et al. 2013; Henaff et al. 2015; Defferrard et al. 2016; Kipf and Welling 2016; Levie et al. 2018; Gilmer et al. 2017; Akakzia and Sigaud 2022]</a>, which generalize the operation of convolution from grid data to graph data by pooling features of neighbors when updating each node. There exist other categories of GNNs, such as <em>graph auto-encoders</em> <a class="citation" href="#cao2016deep">[Cao et al. 2016; Wang et al. 2016; Kipf and Welling 2016; Pan et al. 2018; Li et al. 2018]</a>, <em>spatio-temporal GNNs</em> <a class="citation" href="#yu2017spatio">[Yu et al. 2017; Li et al. 2017; Seo et al. 2018; Guo et al. 2019]</a> and <em>recurrent GNNs</em> <a class="citation" href="#scarselli2005graph">[Scarselli et al. 2005; Gallicchio and Micheli 2010; Li et al. 2015; Dai et al. 2018]</a>. Finally, the aggregation module used to perform node-wise pooling can be either some predefined permutation-invariant function such as sum, max or mean, or a more sophisticated self-attention-based function that learns attention weights for each node <a class="citation" href="#velivckovic2017graph">[Veličković et al. 2017]</a>.</p>
 
 <h3 id="overview-on-graph-neural-networks-in-rl">Overview on Graph Neural Networks in RL</h3>
 
 <p>Recently, Graph Neural Networks have been widely used in Reinforcement Learning. In fact, they promote sample efficiency, especially in multi-object manipulation domains, where object invariance becomes crucial for generalization. In this paragraph, we introduce an overview over recent works in RL using GNNs. We divide the works in two categories: GNNs used for <em>model-based</em> RL and for <em>model-free</em> RL.</p>
 
-<p><strong>Model-based Reinforcement Learning.</strong> The idea of using GNNs in model-based reinforcement learning settings mainly amounts to representing the perceived world of the artificial agents with graphs. Recent papers have been using GNNs to learn prediction models by construction graph representations using the bodies and joints of the agents <a class="citation" href="#wang2016learning"> [16,19,20]</a>. This approach is shown to be successful in prediction, system identification and planning. However, these approaches struggle when the structure of the components and joints of the agent are different. For example, they work better on the Swimmer environment than HalfCheetah, since the latter contains more joints corresponding to different components (back leg, front leg, head …). Other approaches use Interaction Networks <a class="citation" href="#battaglia2016interaction"> [7]</a>, which are a particular type of GNNs to implement transition models of the environment which they later use for imagination-based optimization <a class="citation" href="#hamrick2017metacontrol"> [19]</a> or planning from scratch <a class="citation" href="#wang2016learning"> [16]</a></p>
+<p><strong>Model-based Reinforcement Learning.</strong> The idea of using GNNs in model-based reinforcement learning settings mainly amounts to representing the perceived world of the artificial agents with graphs. Recent papers have been using GNNs to learn prediction models by construction graph representations using the bodies and joints of the agents <a class="citation" href="#wang2016learning">[Wang et al. 2016; Hamrick et al. 2017; Sanchez-Gonzalez et al. 2018]</a>. This approach is shown to be successful in prediction, system identification and planning. However, these approaches struggle when the structure of the components and joints of the agent are different. For example, they work better on the Swimmer environment than HalfCheetah, since the latter contains more joints corresponding to different components (back leg, front leg, head …). Other approaches use Interaction Networks <a class="citation" href="#battaglia2016interaction">[Battaglia et al. 2016]</a>, which are a particular type of GNNs to implement transition models of the environment which they later use for imagination-based optimization <a class="citation" href="#hamrick2017metacontrol">[Hamrick et al. 2017]</a> or planning from scratch <a class="citation" href="#wang2016learning">[Wang et al. 2016]</a></p>
 
-<p><strong>Model-free Reinforcement Learning.</strong> GNNs are also used in model-free reinforcement learning to model the policy and / or the value function <a class="citation" href="#wang2018nervenet"> [22,21,23,24,25,26]</a>. On the one hand, like the model-based setting, some approaches use them to represent the agent’s body and joints as a graph where the different components interact with each other to produce an action <a class="citation" href="#wang2018nervenet"> [22]</a>. On the other hand, other approaches use it to represent the world in term of separate entities and attempt to capture the relational features between them <a class="citation" href="#zambaldi2018relational"> [21,23,24,25,26]</a>.</p>
+<p><strong>Model-free Reinforcement Learning.</strong> GNNs are also used in model-free reinforcement learning to model the policy and / or the value function <a class="citation" href="#wang2018nervenet">[Wang et al. 2018; Zambaldi et al. 2018; Bapst et al. 2019; Li et al. 2019; Colas et al. 2020; Akakzia et al. 2021]</a>. On the one hand, like the model-based setting, some approaches use them to represent the agent’s body and joints as a graph where the different components interact with each other to produce an action <a class="citation" href="#wang2018nervenet">[Wang et al. 2018]</a>. On the other hand, other approaches use it to represent the world in term of separate entities and attempt to capture the relational features between them <a class="citation" href="#zambaldi2018relational">[Zambaldi et al. 2018; Bapst et al. 2019; Li et al. 2019; Colas et al. 2020; Akakzia et al. 2021]</a>.</p>
 
 <h3 id="limitations">Limitations</h3>
 
-<p>In spite of their generalization capacities provided by their permutation invariance, GNNs still show some limitations to solve some classes of problems such as discriminating between certain non-isomorphic graphs <a class="citation" href="#kondor2018generalization"> [57]</a>. Moreover, notions like recursion, control flow and conditional iteration are not straightforward to represent with graphs, and might require some domain-specific tweaks (for example, in interpreting abstract syntax trees). In fact, symbolic  programs using probabilistic models are shown to work better on these classes of problems <a class="citation" href="#tenenbaum2011grow"> [6,58,59]</a>. But more importantly, a more pressing question is about the origin of the graph networks that most of the methods work on. In fact, most approaches that use GNNs use graphs with predefined entities corresponding to structured objects. Removing this assumption, it is still unclear how to convert sensory data into more structured graph-like representations. Some lines of active research are exploring these issues <a class="citation" href="#watters2017visual"> [32,33,34,35]</a>.</p>
+<p>In spite of their generalization capacities provided by their permutation invariance, GNNs still show some limitations to solve some classes of problems such as discriminating between certain non-isomorphic graphs <a class="citation" href="#kondor2018generalization">[Kondor and Trivedi 2018]</a>. Moreover, notions like recursion, control flow and conditional iteration are not straightforward to represent with graphs, and might require some domain-specific tweaks (for example, in interpreting abstract syntax trees). In fact, symbolic  programs using probabilistic models are shown to work better on these classes of problems <a class="citation" href="#tenenbaum2011grow">[Tenenbaum et al. 2011; Goodman et al. 2014; Lake et al. 2015]</a>. But more importantly, a more pressing question is about the origin of the graph networks that most of the methods work on. In fact, most approaches that use GNNs use graphs with predefined entities corresponding to structured objects. Removing this assumption, it is still unclear how to convert sensory data into more structured graph-like representations. Some lines of active research are exploring these issues <a class="citation" href="#watters2017visual">[Watters et al. 2017; Van Steenkiste et al. 2018; Li et al. 2018; Kipf et al. 2018]</a>.</p>
 
 <!--- References -->
 
-<ol class="bibliography"><li><span id="winston1970learning">[1]P. H. Winston, <i>Learning Structural Descriptions from Examples</i>, None (1970).</span></li>
-<li><span id="palmer1975visual">[2]S. E. Palmer, <i>Visual Perception and World Knowledge: Notes on a Model of Sensory-Cognitive Interaction</i>, Explorations in Cognition 279 (1975).</span></li>
-<li><span id="navon1977forest">[3]D. Navon, <i>Forest before Trees: The Precedence of Global Features in Visual Perception</i>, Cognitive Psychology <b>9</b>, 353 (1977).</span></li>
-<li><span id="markman1989categorization">[4]E. M. Markman, <i>Categorization and Naming in Children: Problems of Induction</i> (mit Press, 1989).</span></li>
-<li><span id="kemp2008discovery">[5]C. Kemp and J. B. Tenenbaum, <i>The Discovery of Structural Form</i>, Proceedings of the National Academy of Sciences <b>105</b>, 10687 (2008).</span></li>
-<li><span id="tenenbaum2011grow">[6]J. B. Tenenbaum, C. Kemp, T. L. Griffiths, and N. D. Goodman, <i>How to Grow a Mind: Statistics, Structure, and Abstraction</i>, Science <b>331</b>, 1279 (2011).</span></li>
-<li><span id="battaglia2016interaction">[7]P. Battaglia, R. Pascanu, M. Lai, D. Jimenez Rezende, and others, <i>Interaction Networks for Learning about Objects, Relations and Physics</i>, Advances in Neural Information Processing Systems <b>29</b>, (2016).</span></li>
-<li><span id="battaglia2018relational">[8]P. W. Battaglia, J. B. Hamrick, V. Bapst, A. Sanchez-Gonzalez, V. Zambaldi, M. Malinowski, A. Tacchetti, D. Raposo, A. Santoro, R. Faulkner, and others, <i>Relational Inductive Biases, Deep Learning, and Graph Networks</i>, ArXiv Preprint ArXiv:1806.01261 (2018).</span></li>
-<li><span id="godfrey2021theory">[9]P. Godfrey-Smith, <i>Theory and Reality</i>, in <i>Theory and Reality</i> (University of Chicago Press, 2021).</span></li>
-<li><span id="redmon2016you">[10]J. Redmon, S. Divvala, R. Girshick, and A. Farhadi, <i>You Only Look Once: Unified, Real-Time Object Detection</i>, in <i>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition</i> (2016), pp. 779–788.</span></li>
-<li><span id="ren2015faster">[11]S. Ren, K. He, R. Girshick, and J. Sun, <i>Faster r-Cnn: Towards Real-Time Object Detection with Region Proposal Networks</i>, Advances in Neural Information Processing Systems <b>28</b>, (2015).</span></li>
-<li><span id="zhang2016deep">[12]W. Zhang, L. Xu, Z. Li, Q. Lu, and Y. Liu, <i>A Deep-Intelligence Framework for Online Video Processing</i>, IEEE Software <b>33</b>, 44 (2016).</span></li>
-<li><span id="hinton2012deep">[13]G. Hinton, L. Deng, D. Yu, G. E. Dahl, A.-rahman Mohamed, N. Jaitly, A. Senior, V. Vanhoucke, P. Nguyen, T. N. Sainath, and others, <i>Deep Neural Networks for Acoustic Modeling in Speech Recognition: The Shared Views of Four Research Groups</i>, IEEE Signal Processing Magazine <b>29</b>, 82 (2012).</span></li>
-<li><span id="luong2015effective">[14]M.-T. Luong, H. Pham, and C. D. Manning, <i>Effective Approaches to Attention-Based Neural Machine Translation</i>, ArXiv Preprint ArXiv:1508.04025 (2015).</span></li>
-<li><span id="wu2017sequence">[15]S. Wu, D. Zhang, N. Yang, M. Li, and M. Zhou, <i>Sequence-to-Dependency Neural Machine Translation</i>, in <i>Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</i> (2017), pp. 698–707.</span></li>
-<li><span id="wang2016learning">[16]J. X. Wang, Z. Kurth-Nelson, D. Tirumala, H. Soyer, J. Z. Leibo, R. Munos, C. Blundell, D. Kumaran, and M. Botvinick, <i>Learning to Reinforcement Learn</i>, ArXiv Preprint ArXiv:1611.05763 (2016).</span></li>
-<li><span id="santoro2017simple">[17]A. Santoro, D. Raposo, D. G. Barrett, M. Malinowski, R. Pascanu, P. Battaglia, and T. Lillicrap, <i>A Simple Neural Network Module for Relational Reasoning</i>, Advances in Neural Information Processing Systems <b>30</b>, (2017).</span></li>
-<li><span id="zaheer2017deep">[18]M. Zaheer, S. Kottur, S. Ravanbakhsh, B. Poczos, R. R. Salakhutdinov, and A. J. Smola, <i>Deep Sets</i>, in <i>Advances in Neural Information Processing Systems</i> (2017), pp. 3391–3401.</span></li>
-<li><span id="hamrick2017metacontrol">[19]J. B. Hamrick, A. J. Ballard, R. Pascanu, O. Vinyals, N. Heess, and P. W. Battaglia, <i>Metacontrol for Adaptive Imagination-Based Optimization</i>, ArXiv Preprint ArXiv:1705.02670 (2017).</span></li>
-<li><span id="sanchez2018graph">[20]A. Sanchez-Gonzalez, N. Heess, J. T. Springenberg, J. Merel, M. Riedmiller, R. Hadsell, and P. Battaglia, <i>Graph Networks as Learnable Physics Engines for Inference and Control</i>, in <i>International Conference on Machine Learning</i> (PMLR, 2018), pp. 4470–4479.</span></li>
-<li><span id="zambaldi2018relational">[21]V. Zambaldi, D. Raposo, A. Santoro, V. Bapst, Y. Li, I. Babuschkin, K. Tuyls, D. Reichert, T. Lillicrap, E. Lockhart, and others, <i>Relational Deep Reinforcement Learning</i>, ArXiv Preprint ArXiv:1806.01830 (2018).</span></li>
-<li><span id="wang2018nervenet">[22]T. Wang, R. Liao, J. Ba, and S. Fidler, <i>NerveNet: Learning Structured Policy with Graph Neural Networks</i>, in <i>International Conference on Learning Representations</i> (2018).</span></li>
-<li><span id="bapst2019structured">[23]V. Bapst, A. Sanchez-Gonzalez, C. Doersch, K. Stachenfeld, P. Kohli, P. Battaglia, and J. B. Hamrick, <i>Structured Agents for Physical Construction</i>, in <i>International Conference on Machine Learning</i> (PMLR, 2019), pp. 464–474.</span></li>
-<li><span id="li2019towards">[24]R. Li, A. Jabri, T. Darrell, and P. Agrawal, <i>Towards Practical Multi-Object Manipulation Using Relational Reinforcement Learning</i>, ArXiv Preprint <b>abs/1912.11032</b>, (2019).</span></li>
-<li><span id="colas2020language">[25]C. Colas, T. Karch, N. Lair, J.-M. Dussoux, C. Moulin-Frier, P. F. Dominey, and P.-Y. Oudeyer, <i>Language as a Cognitive Tool to Imagine Goals in Curiosity Driven
-Exploration</i>, in <i>Advances in Neural Information Processing Systems 33: Annual Conference
+<ol class="bibliography"><li><span id="winston1970learning"><span style="font-variant: small-caps">Winston, P.H.</span> 1970. Learning structural descriptions from examples. <i>None</i>.</span></li>
+<li><span id="palmer1975visual"><span style="font-variant: small-caps">Palmer, S.E.</span> 1975. Visual perception and world knowledge: Notes on a model of sensory-cognitive interaction. <i>Explorations in cognition</i>, 279–307.</span></li>
+<li><span id="navon1977forest"><span style="font-variant: small-caps">Navon, D.</span> 1977. Forest before trees: The precedence of global features in visual perception. <i>Cognitive psychology</i> <i>9</i>, 3, 353–383.</span></li>
+<li><span id="markman1989categorization"><span style="font-variant: small-caps">Markman, E.M.</span> 1989. <i>Categorization and naming in children: Problems of induction</i>. mit Press.</span></li>
+<li><span id="kemp2008discovery"><span style="font-variant: small-caps">Kemp, C. and Tenenbaum, J.B.</span> 2008. The discovery of structural form. <i>Proceedings of the National Academy of Sciences</i> <i>105</i>, 31, 10687–10692.</span></li>
+<li><span id="tenenbaum2011grow"><span style="font-variant: small-caps">Tenenbaum, J.B., Kemp, C., Griffiths, T.L., and Goodman, N.D.</span> 2011. How to grow a mind: Statistics, structure, and abstraction. <i>Science</i> <i>331</i>, 6022, 1279–1285.</span></li>
+<li><span id="battaglia2016interaction"><span style="font-variant: small-caps">Battaglia, P., Pascanu, R., Lai, M., Jimenez Rezende, D., and others</span>. 2016. Interaction networks for learning about objects, relations and physics. <i>Advances in neural information processing systems</i> <i>29</i>.</span></li>
+<li><span id="battaglia2018relational"><span style="font-variant: small-caps">Battaglia, P.W., Hamrick, J.B., Bapst, V., et al.</span> 2018. Relational inductive biases, deep learning, and graph networks. <i>arXiv preprint arXiv:1806.01261</i>.</span></li>
+<li><span id="godfrey2021theory"><span style="font-variant: small-caps">Godfrey-Smith, P.</span> 2021. Theory and reality. In: <i>Theory and Reality</i>. University of Chicago Press.</span></li>
+<li><span id="redmon2016you"><span style="font-variant: small-caps">Redmon, J., Divvala, S., Girshick, R., and Farhadi, A.</span> 2016. You only look once: Unified, real-time object detection. <i>Proceedings of the IEEE conference on computer vision and pattern recognition</i>, 779–788.</span></li>
+<li><span id="ren2015faster"><span style="font-variant: small-caps">Ren, S., He, K., Girshick, R., and Sun, J.</span> 2015. Faster r-cnn: Towards real-time object detection with region proposal networks. <i>Advances in neural information processing systems</i> <i>28</i>.</span></li>
+<li><span id="zhang2016deep"><span style="font-variant: small-caps">Zhang, W., Xu, L., Li, Z., Lu, Q., and Liu, Y.</span> 2016. A deep-intelligence framework for online video processing. <i>IEEE Software</i> <i>33</i>, 2, 44–51.</span></li>
+<li><span id="hinton2012deep"><span style="font-variant: small-caps">Hinton, G., Deng, L., Yu, D., et al.</span> 2012. Deep neural networks for acoustic modeling in speech recognition: The shared views of four research groups. <i>IEEE Signal processing magazine</i> <i>29</i>, 6, 82–97.</span></li>
+<li><span id="luong2015effective"><span style="font-variant: small-caps">Luong, M.-T., Pham, H., and Manning, C.D.</span> 2015. Effective approaches to attention-based neural machine translation. <i>arXiv preprint arXiv:1508.04025</i>.</span></li>
+<li><span id="wu2017sequence"><span style="font-variant: small-caps">Wu, S., Zhang, D., Yang, N., Li, M., and Zhou, M.</span> 2017. Sequence-to-dependency neural machine translation. <i>Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</i>, 698–707.</span></li>
+<li><span id="wang2016learning"><span style="font-variant: small-caps">Wang, J.X., Kurth-Nelson, Z., Tirumala, D., et al.</span> 2016. Learning to reinforcement learn. <i>arXiv preprint arXiv:1611.05763</i>.</span></li>
+<li><span id="santoro2017simple"><span style="font-variant: small-caps">Santoro, A., Raposo, D., Barrett, D.G., et al.</span> 2017. A simple neural network module for relational reasoning. <i>Advances in neural information processing systems</i> <i>30</i>.</span></li>
+<li><span id="zaheer2017deep"><span style="font-variant: small-caps">Zaheer, M., Kottur, S., Ravanbakhsh, S., Poczos, B., Salakhutdinov, R.R., and Smola, A.J.</span> 2017. Deep sets. <i>Advances in neural information processing systems</i>, 3391–3401.</span></li>
+<li><span id="hamrick2017metacontrol"><span style="font-variant: small-caps">Hamrick, J.B., Ballard, A.J., Pascanu, R., Vinyals, O., Heess, N., and Battaglia, P.W.</span> 2017. Metacontrol for adaptive imagination-based optimization. <i>arXiv preprint arXiv:1705.02670</i>.</span></li>
+<li><span id="sanchez2018graph"><span style="font-variant: small-caps">Sanchez-Gonzalez, A., Heess, N., Springenberg, J.T., et al.</span> 2018. Graph networks as learnable physics engines for inference and control. <i>International Conference on Machine Learning</i>, PMLR, 4470–4479.</span></li>
+<li><span id="zambaldi2018relational"><span style="font-variant: small-caps">Zambaldi, V., Raposo, D., Santoro, A., et al.</span> 2018. Relational deep reinforcement learning. <i>arXiv preprint arXiv:1806.01830</i>.</span></li>
+<li><span id="wang2018nervenet"><span style="font-variant: small-caps">Wang, T., Liao, R., Ba, J., and Fidler, S.</span> 2018. NerveNet: Learning Structured Policy with Graph Neural Networks. <i>International Conference on Learning Representations</i>.</span></li>
+<li><span id="bapst2019structured"><span style="font-variant: small-caps">Bapst, V., Sanchez-Gonzalez, A., Doersch, C., et al.</span> 2019. Structured agents for physical construction. <i>International Conference on Machine Learning</i>, PMLR, 464–474.</span></li>
+<li><span id="li2019towards"><span style="font-variant: small-caps">Li, R., Jabri, A., Darrell, T., and Agrawal, P.</span> 2019. Towards Practical Multi-Object Manipulation using Relational Reinforcement Learning. <i>ArXiv preprint</i> <i>abs/1912.11032</i>.</span></li>
+<li><span id="colas2020language"><span style="font-variant: small-caps">Colas, C., Karch, T., Lair, N., et al.</span> 2020. Language as a Cognitive Tool to Imagine Goals in Curiosity Driven
+Exploration. <i>Advances in Neural Information Processing Systems 33: Annual Conference
 on Neural Information Processing Systems 2020, NeurIPS 2020, December
-6-12, 2020, Virtual</i>, edited by H. Larochelle, M. A. Ranzato, R. Hadsell, M.-F. Balcan, and H.-T. Lin (2020).</span></li>
-<li><span id="akakzia2021grounding">[26]A. Akakzia, C. Colas, P.-Y. Oudeyer, M. Chetouani, and O. Sigaud, <i>Grounding Language to Autonomously-Acquired Skills via Goal Generation</i>, in <i>9th International Conference on Learning Representations, ICLR 2021,
-Virtual Event, Austria, May 3-7, 2021</i> (OpenReview.net, 2021).</span></li>
-<li><span id="akakzia2022learning">[27]A. Akakzia and O. Sigaud, <i>Learning Object-Centered Autotelic Behaviors with Graph Neural Networks</i>, ArXiv Preprint ArXiv:2204.05141 (2022).</span></li>
-<li><span id="bronstein2017geometric">[28]M. M. Bronstein, J. Bruna, Y. LeCun, A. Szlam, and P. Vandergheynst, <i>Geometric Deep Learning: Going beyond Euclidean Data</i>, IEEE Signal Processing Magazine <b>34</b>, 18 (2017).</span></li>
-<li><span id="hamilton2017representation">[29]W. L. Hamilton, R. Ying, and J. Leskovec, <i>Representation Learning on Graphs: Methods and Applications</i>, ArXiv Preprint ArXiv:1709.05584 (2017).</span></li>
-<li><span id="lee2018graph">[30]J. B. Lee, R. Rossi, and X. Kong, <i>Graph Classification Using Structural Attention</i>, in <i>Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining</i> (2018), pp. 1666–1674.</span></li>
-<li><span id="wu2020comprehensive">[31]Z. Wu, S. Pan, F. Chen, G. Long, C. Zhang, and S. Y. Philip, <i>A Comprehensive Survey on Graph Neural Networks</i>, IEEE Transactions on Neural Networks and Learning Systems <b>32</b>, 4 (2020).</span></li>
-<li><span id="watters2017visual">[32]N. Watters, D. Zoran, T. Weber, P. Battaglia, R. Pascanu, and A. Tacchetti, <i>Visual Interaction Networks: Learning a Physics Simulator from Video</i>, Advances in Neural Information Processing Systems <b>30</b>, (2017).</span></li>
-<li><span id="van2018relational">[33]S. Van Steenkiste, M. Chang, K. Greff, and J. Schmidhuber, <i>Relational Neural Expectation Maximization: Unsupervised Discovery of Objects and Their Interactions</i>, ArXiv Preprint ArXiv:1802.10353 (2018).</span></li>
-<li><span id="li2018learning">[34]Y. Li, O. Vinyals, C. Dyer, R. Pascanu, and P. Battaglia, <i>Learning Deep Generative Models of Graphs</i>, ArXiv Preprint ArXiv:1803.03324 (2018).</span></li>
-<li><span id="kipf2018neural">[35]T. Kipf, E. Fetaya, K.-C. Wang, M. Welling, and R. Zemel, <i>Neural Relational Inference for Interacting Systems</i>, in <i>International Conference on Machine Learning</i> (PMLR, 2018), pp. 2688–2697.</span></li>
-<li><span id="chang2016compositional">[36]M. B. Chang, T. Ullman, A. Torralba, and J. B. Tenenbaum, <i>A Compositional Object-Based Approach to Learning Physical Dynamics</i>, ArXiv Preprint ArXiv:1612.00341 (2016).</span></li>
-<li><span id="hamrick2018relational">[37]J. B. Hamrick, K. R. Allen, V. Bapst, T. Zhu, K. R. McKee, J. B. Tenenbaum, and P. W. Battaglia, <i>Relational Inductive Bias for Physical Construction in Humans and Machines</i>, ArXiv Preprint <b>abs/1806.01203</b>, (2018).</span></li>
-<li><span id="gilmer2017neural">[38]J. Gilmer, S. S. Schoenholz, P. F. Riley, O. Vinyals, and G. E. Dahl, <i>Neural Message Passing for Quantum Chemistry</i>, ArXiv Preprint ArXiv:1704.01212 (2017).</span></li>
-<li><span id="bruna2013spectral">[39]J. Bruna, W. Zaremba, A. Szlam, and Y. LeCun, <i>Spectral Networks and Locally Connected Networks on Graphs</i>, ArXiv Preprint ArXiv:1312.6203 (2013).</span></li>
-<li><span id="henaff2015deep">[40]M. Henaff, J. Bruna, and Y. LeCun, <i>Deep Convolutional Networks on Graph-Structured Data</i>, ArXiv Preprint ArXiv:1506.05163 (2015).</span></li>
-<li><span id="defferrard2016convolutional">[41]M. Defferrard, X. Bresson, and P. Vandergheynst, <i>Convolutional Neural Networks on Graphs with Fast Localized Spectral Filtering</i>, Advances in Neural Information Processing Systems <b>29</b>, (2016).</span></li>
-<li><span id="kipf2016semi">[42]T. N. Kipf and M. Welling, <i>Semi-Supervised Classification with Graph Convolutional Networks</i>, ArXiv Preprint ArXiv:1609.02907 (2016).</span></li>
-<li><span id="levie2018cayleynets">[43]R. Levie, F. Monti, X. Bresson, and M. M. Bronstein, <i>Cayleynets: Graph Convolutional Neural Networks with Complex Rational Spectral Filters</i>, IEEE Transactions on Signal Processing <b>67</b>, 97 (2018).</span></li>
-<li><span id="cao2016deep">[44]S. Cao, W. Lu, and Q. Xu, <i>Deep Neural Networks for Learning Graph Representations</i>, in <i>Proceedings of the AAAI Conference on Artificial Intelligence</i>, Vol. 30 (2016).</span></li>
-<li><span id="wang2016structural">[45]D. Wang, P. Cui, and W. Zhu, <i>Structural Deep Network Embedding</i>, in <i>Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</i> (2016), pp. 1225–1234.</span></li>
-<li><span id="kipf2016variational">[46]T. N. Kipf and M. Welling, <i>Variational Graph Auto-Encoders</i>, ArXiv Preprint ArXiv:1611.07308 (2016).</span></li>
-<li><span id="pan2018adversarially">[47]S. Pan, R. Hu, G. Long, J. Jiang, L. Yao, and C. Zhang, <i>Adversarially Regularized Graph Autoencoder for Graph Embedding</i>, ArXiv Preprint ArXiv:1802.04407 (2018).</span></li>
-<li><span id="yu2017spatio">[48]B. Yu, H. Yin, and Z. Zhu, <i>Spatio-Temporal Graph Convolutional Networks: A Deep Learning Framework for Traffic Forecasting</i>, ArXiv Preprint ArXiv:1709.04875 (2017).</span></li>
-<li><span id="li2017diffusion">[49]Y. Li, R. Yu, C. Shahabi, and Y. Liu, <i>Diffusion Convolutional Recurrent Neural Network: Data-Driven Traffic Forecasting</i>, ArXiv Preprint ArXiv:1707.01926 (2017).</span></li>
-<li><span id="seo2018structured">[50]Y. Seo, M. Defferrard, P. Vandergheynst, and X. Bresson, <i>Structured Sequence Modeling with Graph Convolutional Recurrent Networks</i>, in <i>International Conference on Neural Information Processing</i> (Springer, 2018), pp. 362–373.</span></li>
-<li><span id="guo2019attention">[51]S. Guo, Y. Lin, N. Feng, C. Song, and H. Wan, <i>Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting</i>, in <i>Proceedings of the AAAI Conference on Artificial Intelligence</i>, Vol. 33 (2019), pp. 922–929.</span></li>
-<li><span id="scarselli2005graph">[52]F. Scarselli, S. L. Yong, M. Gori, M. Hagenbuchner, A. C. Tsoi, and M. Maggini, <i>Graph Neural Networks for Ranking Web Pages</i>, in <i>The 2005 IEEE/WIC/ACM International Conference on Web Intelligence (WI’05)</i> (IEEE, 2005), pp. 666–672.</span></li>
-<li><span id="gallicchio2010graph">[53]C. Gallicchio and A. Micheli, <i>Graph Echo State Networks</i>, in <i>The 2010 International Joint Conference on Neural Networks (IJCNN)</i> (IEEE, 2010), pp. 1–8.</span></li>
-<li><span id="li2015gated">[54]Y. Li, D. Tarlow, M. Brockschmidt, and R. Zemel, <i>Gated Graph Sequence Neural Networks</i>, ArXiv Preprint ArXiv:1511.05493 (2015).</span></li>
-<li><span id="dai2018learning">[55]H. Dai, Z. Kozareva, B. Dai, A. Smola, and L. Song, <i>Learning Steady-States of Iterative Algorithms over Graphs</i>, in <i>International Conference on Machine Learning</i> (PMLR, 2018), pp. 1106–1114.</span></li>
-<li><span id="velivckovic2017graph">[56]P. Veličković, G. Cucurull, A. Casanova, A. Romero, P. Lio, and Y. Bengio, <i>Graph Attention Networks</i>, ArXiv Preprint ArXiv:1710.10903 (2017).</span></li>
-<li><span id="kondor2018generalization">[57]R. Kondor and S. Trivedi, <i>On the Generalization of Equivariance and Convolution in Neural Networks to the Action of Compact Groups</i>, in <i>International Conference on Machine Learning</i> (PMLR, 2018), pp. 2747–2755.</span></li>
-<li><span id="goodman2014concepts">[58]N. D. Goodman, J. B. Tenenbaum, and T. Gerstenberg, Concepts in a Probabilistic Language of Thought, Center for Brains, Minds and Machines (CBMM), 2014.</span></li>
-<li><span id="lake2015human">[59]B. M. Lake, R. Salakhutdinov, and J. B. Tenenbaum, <i>Human-Level Concept Learning through Probabilistic Program Induction</i>, Science <b>350</b>, 1332 (2015).</span></li></ol>
+6-12, 2020, virtual</i>.</span></li>
+<li><span id="akakzia2021grounding"><span style="font-variant: small-caps">Akakzia, A., Colas, C., Oudeyer, P.-Y., Chetouani, M., and Sigaud, O.</span> 2021. Grounding Language to Autonomously-Acquired Skills via Goal Generation. <i>9th International Conference on Learning Representations, ICLR 2021,
+Virtual Event, Austria, May 3-7, 2021</i>, OpenReview.net.</span></li>
+<li><span id="akakzia2022learning"><span style="font-variant: small-caps">Akakzia, A. and Sigaud, O.</span> 2022. Learning Object-Centered Autotelic Behaviors with Graph Neural Networks. <i>arXiv preprint arXiv:2204.05141</i>.</span></li>
+<li><span id="bronstein2017geometric"><span style="font-variant: small-caps">Bronstein, M.M., Bruna, J., LeCun, Y., Szlam, A., and Vandergheynst, P.</span> 2017. Geometric deep learning: going beyond euclidean data. <i>IEEE Signal Processing Magazine</i> <i>34</i>, 4, 18–42.</span></li>
+<li><span id="hamilton2017representation"><span style="font-variant: small-caps">Hamilton, W.L., Ying, R., and Leskovec, J.</span> 2017. Representation learning on graphs: Methods and applications. <i>arXiv preprint arXiv:1709.05584</i>.</span></li>
+<li><span id="lee2018graph"><span style="font-variant: small-caps">Lee, J.B., Rossi, R., and Kong, X.</span> 2018. Graph classification using structural attention. <i>Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining</i>, 1666–1674.</span></li>
+<li><span id="wu2020comprehensive"><span style="font-variant: small-caps">Wu, Z., Pan, S., Chen, F., Long, G., Zhang, C., and Philip, S.Y.</span> 2020. A comprehensive survey on graph neural networks. <i>IEEE transactions on neural networks and learning systems</i> <i>32</i>, 1, 4–24.</span></li>
+<li><span id="watters2017visual"><span style="font-variant: small-caps">Watters, N., Zoran, D., Weber, T., Battaglia, P., Pascanu, R., and Tacchetti, A.</span> 2017. Visual interaction networks: Learning a physics simulator from video. <i>Advances in neural information processing systems</i> <i>30</i>.</span></li>
+<li><span id="van2018relational"><span style="font-variant: small-caps">Van Steenkiste, S., Chang, M., Greff, K., and Schmidhuber, J.</span> 2018. Relational neural expectation maximization: Unsupervised discovery of objects and their interactions. <i>arXiv preprint arXiv:1802.10353</i>.</span></li>
+<li><span id="li2018learning"><span style="font-variant: small-caps">Li, Y., Vinyals, O., Dyer, C., Pascanu, R., and Battaglia, P.</span> 2018. Learning deep generative models of graphs. <i>arXiv preprint arXiv:1803.03324</i>.</span></li>
+<li><span id="kipf2018neural"><span style="font-variant: small-caps">Kipf, T., Fetaya, E., Wang, K.-C., Welling, M., and Zemel, R.</span> 2018. Neural relational inference for interacting systems. <i>International Conference on Machine Learning</i>, PMLR, 2688–2697.</span></li>
+<li><span id="chang2016compositional"><span style="font-variant: small-caps">Chang, M.B., Ullman, T., Torralba, A., and Tenenbaum, J.B.</span> 2016. A compositional object-based approach to learning physical dynamics. <i>arXiv preprint arXiv:1612.00341</i>.</span></li>
+<li><span id="hamrick2018relational"><span style="font-variant: small-caps">Hamrick, J.B., Allen, K.R., Bapst, V., et al.</span> 2018. Relational inductive bias for physical construction in humans and machines. <i>ArXiv preprint</i> <i>abs/1806.01203</i>.</span></li>
+<li><span id="gilmer2017neural"><span style="font-variant: small-caps">Gilmer, J., Schoenholz, S.S., Riley, P.F., Vinyals, O., and Dahl, G.E.</span> 2017. Neural message passing for quantum chemistry. <i>arXiv preprint arXiv:1704.01212</i>.</span></li>
+<li><span id="bruna2013spectral"><span style="font-variant: small-caps">Bruna, J., Zaremba, W., Szlam, A., and LeCun, Y.</span> 2013. Spectral networks and locally connected networks on graphs. <i>arXiv preprint arXiv:1312.6203</i>.</span></li>
+<li><span id="henaff2015deep"><span style="font-variant: small-caps">Henaff, M., Bruna, J., and LeCun, Y.</span> 2015. Deep convolutional networks on graph-structured data. <i>arXiv preprint arXiv:1506.05163</i>.</span></li>
+<li><span id="defferrard2016convolutional"><span style="font-variant: small-caps">Defferrard, M., Bresson, X., and Vandergheynst, P.</span> 2016. Convolutional neural networks on graphs with fast localized spectral filtering. <i>Advances in neural information processing systems</i> <i>29</i>.</span></li>
+<li><span id="kipf2016semi"><span style="font-variant: small-caps">Kipf, T.N. and Welling, M.</span> 2016. Semi-supervised classification with graph convolutional networks. <i>arXiv preprint arXiv:1609.02907</i>.</span></li>
+<li><span id="levie2018cayleynets"><span style="font-variant: small-caps">Levie, R., Monti, F., Bresson, X., and Bronstein, M.M.</span> 2018. Cayleynets: Graph convolutional neural networks with complex rational spectral filters. <i>IEEE Transactions on Signal Processing</i> <i>67</i>, 1, 97–109.</span></li>
+<li><span id="cao2016deep"><span style="font-variant: small-caps">Cao, S., Lu, W., and Xu, Q.</span> 2016. Deep neural networks for learning graph representations. <i>Proceedings of the AAAI Conference on Artificial Intelligence</i>.</span></li>
+<li><span id="wang2016structural"><span style="font-variant: small-caps">Wang, D., Cui, P., and Zhu, W.</span> 2016. Structural deep network embedding. <i>Proceedings of the 22nd ACM SIGKDD international conference on Knowledge discovery and data mining</i>, 1225–1234.</span></li>
+<li><span id="kipf2016variational"><span style="font-variant: small-caps">Kipf, T.N. and Welling, M.</span> 2016. Variational graph auto-encoders. <i>arXiv preprint arXiv:1611.07308</i>.</span></li>
+<li><span id="pan2018adversarially"><span style="font-variant: small-caps">Pan, S., Hu, R., Long, G., Jiang, J., Yao, L., and Zhang, C.</span> 2018. Adversarially regularized graph autoencoder for graph embedding. <i>arXiv preprint arXiv:1802.04407</i>.</span></li>
+<li><span id="yu2017spatio"><span style="font-variant: small-caps">Yu, B., Yin, H., and Zhu, Z.</span> 2017. Spatio-temporal graph convolutional networks: A deep learning framework for traffic forecasting. <i>arXiv preprint arXiv:1709.04875</i>.</span></li>
+<li><span id="li2017diffusion"><span style="font-variant: small-caps">Li, Y., Yu, R., Shahabi, C., and Liu, Y.</span> 2017. Diffusion convolutional recurrent neural network: Data-driven traffic forecasting. <i>arXiv preprint arXiv:1707.01926</i>.</span></li>
+<li><span id="seo2018structured"><span style="font-variant: small-caps">Seo, Y., Defferrard, M., Vandergheynst, P., and Bresson, X.</span> 2018. Structured sequence modeling with graph convolutional recurrent networks. <i>International conference on neural information processing</i>, Springer, 362–373.</span></li>
+<li><span id="guo2019attention"><span style="font-variant: small-caps">Guo, S., Lin, Y., Feng, N., Song, C., and Wan, H.</span> 2019. Attention based spatial-temporal graph convolutional networks for traffic flow forecasting. <i>Proceedings of the AAAI conference on artificial intelligence</i>, 922–929.</span></li>
+<li><span id="scarselli2005graph"><span style="font-variant: small-caps">Scarselli, F., Yong, S.L., Gori, M., Hagenbuchner, M., Tsoi, A.C., and Maggini, M.</span> 2005. Graph neural networks for ranking web pages. <i>The 2005 IEEE/WIC/ACM International Conference on Web Intelligence (WI’05)</i>, IEEE, 666–672.</span></li>
+<li><span id="gallicchio2010graph"><span style="font-variant: small-caps">Gallicchio, C. and Micheli, A.</span> 2010. Graph echo state networks. <i>The 2010 international joint conference on neural networks (IJCNN)</i>, IEEE, 1–8.</span></li>
+<li><span id="li2015gated"><span style="font-variant: small-caps">Li, Y., Tarlow, D., Brockschmidt, M., and Zemel, R.</span> 2015. Gated graph sequence neural networks. <i>arXiv preprint arXiv:1511.05493</i>.</span></li>
+<li><span id="dai2018learning"><span style="font-variant: small-caps">Dai, H., Kozareva, Z., Dai, B., Smola, A., and Song, L.</span> 2018. Learning steady-states of iterative algorithms over graphs. <i>International conference on machine learning</i>, PMLR, 1106–1114.</span></li>
+<li><span id="velivckovic2017graph"><span style="font-variant: small-caps">Veličković, P., Cucurull, G., Casanova, A., Romero, A., Lio, P., and Bengio, Y.</span> 2017. Graph attention networks. <i>arXiv preprint arXiv:1710.10903</i>.</span></li>
+<li><span id="kondor2018generalization"><span style="font-variant: small-caps">Kondor, R. and Trivedi, S.</span> 2018. On the generalization of equivariance and convolution in neural networks to the action of compact groups. <i>International Conference on Machine Learning</i>, PMLR, 2747–2755.</span></li>
+<li><span id="goodman2014concepts"><span style="font-variant: small-caps">Goodman, N.D., Tenenbaum, J.B., and Gerstenberg, T.</span> 2014. <i>Concepts in a probabilistic language of thought</i>. Center for Brains, Minds and Machines (CBMM).</span></li>
+<li><span id="lake2015human"><span style="font-variant: small-caps">Lake, B.M., Salakhutdinov, R., and Tenenbaum, J.B.</span> 2015. Human-level concept learning through probabilistic program induction. <i>Science</i> <i>350</i>, 6266, 1332–1338.</span></li></ol>
 
     </div><!-- .post-content -->
     <div class="post-share">
       <span>Share:</span>
       <a target="_blank"
-        href="https://twitter.com/intent/tweet?text=When%20Graph%20Neural%20Networks%20Meet%20Reinforcement%20Learning&amp;url=http://localhost:4000/webpage/graph-neural-networks" rel="noopener">Twitter</a>
+        href="https://twitter.com/intent/tweet?text=When%20Graph%20Neural%20Networks%20Meet%20Reinforcement%20Learning&amp;url=http://localhost:4000/blog/graph-neural-networks" rel="noopener">Twitter</a>
       <a target="_blank"
-        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/webpage/graph-neural-networks&amp;t=When%20Graph%20Neural%20Networks%20Meet%20Reinforcement%20Learning" rel="noopener">Facebook</a>
+        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/blog/graph-neural-networks&amp;t=When%20Graph%20Neural%20Networks%20Meet%20Reinforcement%20Learning" rel="noopener">Facebook</a>
     </div><!-- .share-post -->
     <div class="author-box">
       
@@ -323,8 +311,8 @@ Virtual Event, Austria, May 3-7, 2021</i> (OpenReview.net, 2021).</span></li>
   ga('send', 'pageview');
 </script>
   
-  <script src="/webpage/assets/js/plugins.js"></script>
-  <script src="/webpage/assets/js/custom.js"></script>
+  <script src="/blog/assets/js/plugins.js"></script>
+  <script src="/blog/assets/js/custom.js"></script>
 
 </body>
 </html>
