@@ -7,8 +7,8 @@ feature_image: images/library.jpg
 For an exhaustive updated list of scientific publications, please check my [Google Scholar Page](https://scholar.google.com/citations?user=U2CTuQUAAAAJ&hl=fr). My extended resume is [here]({{ site.baseurl }}/assets/Resume.pdf)
 
 # Thesis 
-+ **Akakzia, Ahmed**. (2022). _Teaching Predicate-based Autotelic Agents: Learning Goal Representations with a Social Caregiver for Intrinsically Motivated Agents._ <br>
-Links will be provided after defense.
++ **Akakzia, Ahmed**. (2022). _Teaching Predicate-based Autotelic Agents: Learning Goal Representations with a Social Caregiver for Intrinsically Motivated Agents._ ([Link to manuscript]({{ site.baseurl }}/assets/phd_thesis.pdf)). <br>
+Link to video and slides will be provided after defense.
 
 # Articles
 
